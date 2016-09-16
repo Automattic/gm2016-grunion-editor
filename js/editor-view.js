@@ -67,6 +67,12 @@
                 });
                 */
 
+            // If it's the legacy `[contact-form /]` syntax, populate default fields.
+            if ( ! content ) {
+                content = grunionEditorView.default_form;
+            }
+
+            // Render the fields.
             while ( field = wp.shortcode.next( 'contact-field', content, index ) ) {
                 index += field.content.length;
                 named = field.shortcode.attrs.named;
