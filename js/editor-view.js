@@ -26,10 +26,42 @@
         },
         getContent     : function( x ) {
             var body = this.field_templates.email({
-                label : 'Email Address'
-            }) + this.field_templates.textarea({
-                label : 'Message'
-            });
+                    label : 'Email Address'
+                }) + this.field_templates.telephone({
+                    label : 'Telephone Field'
+                }) + this.field_templates.textarea({
+                    label : 'Textarea Field'
+                }) + this.field_templates.radio({
+                    label : 'Radio Field',
+                    options : [
+                        'Option 1',
+                        'Option 2',
+                        'Option 3'
+                    ],
+                    value : 'Option 2'
+                }) + this.field_templates.checkbox({
+                    label : 'Checkbox Field'
+                }) + this.field_templates['checkbox-multiple']({
+                    label : 'Checkbox Multiple Field',
+                    options : [
+                        'Option 1',
+                        'Option 2',
+                        'Option 3'
+                    ],
+                    value : 'Option 2'
+                }) + this.field_templates.select({
+                    label : 'Select Field',
+                    options : [
+                        'Option 1',
+                        'Option 2',
+                        'Option 3'
+                    ],
+                    value : 'Option 2'
+                }) + this.field_templates.date({
+                    label : 'Date Field'
+                }) + this.field_templates.text({
+                    label : 'Text Field'
+                });
 
             options = {
                 body : body,
