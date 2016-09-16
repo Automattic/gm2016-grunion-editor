@@ -78,6 +78,7 @@ class Grunion_Editor_View {
         <# _.each( data.options, function( option ) { #>
             <label class='grunion-radio-label radio'>
                 <input type='checkbox' name='{{ data.id }}' value='{{ option }}' class="{{ data.class }}" <# if ( option === data.value ) print( "checked='checked'" ) #> />
+                {{ option }}
             </label>
         <# }); #>
         <div class='clear-form'></div>
@@ -100,6 +101,7 @@ class Grunion_Editor_View {
         <# _.each( data.options, function( option ) { #>
             <label class='grunion-checkbox-multiple-label checkbox-multiple'>
                 <input type='checkbox' name='{{ data.id }}[]' value='{{ option }}' class="{{ data.class }}" <# if ( option === data.value || _.contains( data.value, option ) ) print( "checked='checked'" ) #> />
+                {{ option }}
             </label>
         <# }); #>
         <div class='clear-form'></div>
