@@ -24,8 +24,11 @@
             date                : wp.template( 'grunion-field-date' ),
             text                : wp.template( 'grunion-field-text' )
         },
-        getContent     : function( x ) {
-            var body = this.field_templates.email({
+        getContent     : function() {
+            var content = this.shortcode.content,
+                index = 0,
+                field, named,
+                body = ''; /* this.field_templates.email({
                     label : 'Email Address'
                 }) + this.field_templates.telephone({
                     label : 'Telephone Field'
@@ -62,6 +65,16 @@
                 }) + this.field_templates.text({
                     label : 'Text Field'
                 });
+                */
+
+            while ( field = wp.shortcode.next( 'contact-field', content, index ) ) {
+                index += field.content.length;
+                named = field.shortcode.attrs.named;
+                if ( ! named.type || ! this.field_templates[ named.type ] ) {
+                    named.type = 'text';
+                }
+                body += this.field_templates[ named.type ]( named );
+            }
 
             options = {
                 body : body,
