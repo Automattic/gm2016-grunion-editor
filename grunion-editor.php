@@ -31,6 +31,7 @@ class Grunion_Editor_View {
             'home_url_host'     => parse_url( home_url(), PHP_URL_HOST ),
             'labels'      => array(
                 'submit_button_text' => __( 'Submit', 'jetpack' ),
+                'required_field_text' => apply_filters( 'jetpack_required_field_text', __( '(required)', 'jetpack' ) ),
             )
         ) );
 

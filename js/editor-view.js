@@ -73,6 +73,9 @@
                 if ( ! named.type || ! this.field_templates[ named.type ] ) {
                     named.type = 'text';
                 }
+                if ( named.required ) {
+                    named.required = grunionEditorView.labels.required_field_text;
+                }
                 body += this.field_templates[ named.type ]( named );
             }
 
