@@ -53,28 +53,28 @@ class Grunion_Editor_View {
 
 <script type="text/html" id="tmpl-grunion-field-email">
     <div>
-        <label for='{{ data.id }}' class='grunion-field-label email'>{{ data.label }}{{ data.required }}</label>
+        <label for='{{ data.id }}' class='grunion-field-label email'>{{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #></label>
         <input type='email' name='{{ data.id }}' id='{{ data.id }}' value='{{ data.value }}' class='{{ data.class }}' placeholder='{{ data.placeholder }}' />
     </div>
 </script>
 
 <script type="text/html" id="tmpl-grunion-field-telephone">
     <div>
-        <label for='{{ data.id }}' class='grunion-field-label telephone'>{{ data.label }}{{ data.required }}</label>
+        <label for='{{ data.id }}' class='grunion-field-label telephone'>{{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #></label>
         <input type='tel' name='{{ data.id }}' id='{{ data.id }}' value='{{ data.value }}' class='{{ data.class }}' placeholder='{{ data.placeholder }}' />
     </div>
 </script>
 
 <script type="text/html" id="tmpl-grunion-field-textarea">
     <div>
-        <label for='contact-form-comment-{{ data.id }}' class='grunion-field-label textarea'>{{ data.label }}{{ data.required }}</label>
+        <label for='contact-form-comment-{{ data.id }}' class='grunion-field-label textarea'>{{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #></label>
         <textarea name='{{ data.id }}' id='contact-form-comment-{{ data.id }}' rows='20' class='{{ data.class }}' placeholder='{{ data.placeholder }}'>{{ data.value }}</textarea>
     </div>
 </script>
 
 <script type="text/html" id="tmpl-grunion-field-radio">
     <div>
-        <label class='grunion-field-label'>{{ data.label }}{{ data.required }}</label>
+        <label class='grunion-field-label'>{{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #></label>
         <# _.each( data.options, function( option ) { #>
             <label class='grunion-radio-label radio'>
                 <input type='checkbox' name='{{ data.id }}' value='{{ option }}' class="{{ data.class }}" <# if ( option === data.value ) echo "checked='checked'" #> />
@@ -88,7 +88,7 @@ class Grunion_Editor_View {
     <div>
         <label class='grunion-field-label checkbox'>
             <input type='checkbox' name='{{ data.id }}' value='<?php esc_attr__( 'Yes', 'jetpack' ); ?>' class="{{ data.class }}" <# if ( data.value ) echo 'checked="checked"'; #> />
-                {{ data.label }}{{ data.required }}
+                {{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #>
         </label>
         <div class='clear-form'></div>
     </div>
@@ -96,7 +96,7 @@ class Grunion_Editor_View {
 
 <script type="text/html" id="tmpl-grunion-field-checkbox-multiple">
     <div>
-        <label class='grunion-field-label'>{{ data.label }}{{ data.required }}</label>
+        <label class='grunion-field-label'>{{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #></label>
         <# _.each( data.options, function( option ) { #>
             <label class='grunion-checkbox-multiple-label checkbox-multiple'>
                 <input type='checkbox' name='{{ data.id }}[]' value='{{ option }}' class="{{ data.class }}" <# if ( option === data.value || _.contains( data.value, option ) ) echo "checked='checked'" #> />
@@ -108,7 +108,7 @@ class Grunion_Editor_View {
 
 <script type="text/html" id="tmpl-grunion-field-select">
     <div>
-        <label for='{{ data.id }}' class='grunion-field-label select'>{{ data.label }}{{ data.required }}</label>
+        <label for='{{ data.id }}' class='grunion-field-label select'>{{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #></label>
         <select name='{{ data.id }}' id='{{ data.id }}' class="{{ data.class }}">
             <# _.each( data.options, function( option ) { #>
                 <option <# if ( option === data.value ) echo "selected='selected'" #>>{{ option }}</option>
@@ -119,14 +119,14 @@ class Grunion_Editor_View {
 
 <script type="text/html" id="tmpl-grunion-field-date">
     <div>
-        <label for='{{ data.id }}' class='grunion-field-label {{ data.type }}'>{{ data.label }}{{ data.required }}</label>
+        <label for='{{ data.id }}' class='grunion-field-label {{ data.type }}'>{{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #></label>
         <input type='date' name='{{ data.id }}' id='{{ data.id }}' value='{{ data.value }}' class="{{ data.class }}" />
     </div>
 </script>
 
 <script type="text/html" id="tmpl-grunion-field-text">
     <div>
-        <label for='{{ data.id }}' class='grunion-field-label {{ data.type }}'>{{ data.label }}{{ data.required }}</label>
+        <label for='{{ data.id }}' class='grunion-field-label {{ data.type }}'>{{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #></label>
         <input type='text' name='{{ data.id }}' id='{{ data.id }}' value='{{ data.value }}' class='{{ data.class }}' placeholder='{{ data.placeholder }}' />
     </div>
 </script>
