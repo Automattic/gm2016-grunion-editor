@@ -77,7 +77,7 @@ class Grunion_Editor_View {
         <label class='grunion-field-label'>{{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #></label>
         <# _.each( data.options, function( option ) { #>
             <label class='grunion-radio-label radio'>
-                <input type='checkbox' name='{{ data.id }}' value='{{ option }}' class="{{ data.class }}" <# if ( option === data.value ) echo "checked='checked'" #> />
+                <input type='checkbox' name='{{ data.id }}' value='{{ option }}' class="{{ data.class }}" <# if ( option === data.value ) print( "checked='checked'" ) #> />
             </label>
         <# }); #>
         <div class='clear-form'></div>
@@ -87,7 +87,7 @@ class Grunion_Editor_View {
 <script type="text/html" id="tmpl-grunion-field-checkbox">
     <div>
         <label class='grunion-field-label checkbox'>
-            <input type='checkbox' name='{{ data.id }}' value='<?php esc_attr__( 'Yes', 'jetpack' ); ?>' class="{{ data.class }}" <# if ( data.value ) echo 'checked="checked"'; #> />
+            <input type='checkbox' name='{{ data.id }}' value='<?php esc_attr__( 'Yes', 'jetpack' ); ?>' class="{{ data.class }}" <# if ( data.value ) print( 'checked="checked"' ) #> />
                 {{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #>
         </label>
         <div class='clear-form'></div>
@@ -99,7 +99,7 @@ class Grunion_Editor_View {
         <label class='grunion-field-label'>{{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #></label>
         <# _.each( data.options, function( option ) { #>
             <label class='grunion-checkbox-multiple-label checkbox-multiple'>
-                <input type='checkbox' name='{{ data.id }}[]' value='{{ option }}' class="{{ data.class }}" <# if ( option === data.value || _.contains( data.value, option ) ) echo "checked='checked'" #> />
+                <input type='checkbox' name='{{ data.id }}[]' value='{{ option }}' class="{{ data.class }}" <# if ( option === data.value || _.contains( data.value, option ) ) print( "checked='checked'" ) #> />
             </label>
         <# }); #>
         <div class='clear-form'></div>
@@ -111,7 +111,7 @@ class Grunion_Editor_View {
         <label for='{{ data.id }}' class='grunion-field-label select'>{{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #></label>
         <select name='{{ data.id }}' id='{{ data.id }}' class="{{ data.class }}">
             <# _.each( data.options, function( option ) { #>
-                <option <# if ( option === data.value ) echo "selected='selected'" #>>{{ option }}</option>
+                <option <# if ( option === data.value ) print( "selected='selected'" ) #>>foo{{ option }}</option>
             <# }); #>
         </select>
     </div>
