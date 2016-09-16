@@ -74,7 +74,7 @@
 
             // Render the fields.
             while ( field = wp.shortcode.next( 'contact-field', content, index ) ) {
-                index += field.content.length;
+                index = field.index + field.content.length;
                 named = field.shortcode.attrs.named;
                 if ( ! named.type || ! this.field_templates[ named.type ] ) {
                     named.type = 'text';
