@@ -30,7 +30,7 @@ class Grunion_Editor_View {
         wp_localize_script( 'grunion-editor-view', 'grunionEditorView', array(
             'home_url_host'     => parse_url( home_url(), PHP_URL_HOST ),
             'labels'      => array(
-                'contact_form' => esc_html__( 'Contact Form', 'jetpack' ),
+                'submit_button_text' => __( 'Submit', 'jetpack' ),
             )
         ) );
 
@@ -42,14 +42,98 @@ class Grunion_Editor_View {
      */
     public static function editor_view_js_templates() {
         ?>
-<script type="text/html" id="tmpl-grunion-form">
-
+<script type="text/html" id="tmpl-grunion-contact-form">
+    <form action='#' method='post' class='contact-form commentsblock' onsubmit="return false;">
+        {{{ data.body }}}
+        <p class='contact-submit'>
+            <input type='submit' value='{{ data.submit_button_text }}' class='pushbutton-wide'/>
+        </p>
+    </form>
 </script>
+
+<script type="text/html" id="tmpl-grunion-field-email">
+    <div>
+        <label for='{{ data.id }}' class='grunion-field-label email'>{{ data.label }}{{ data.required }}</label>
+        <input type='email' name='{{ data.id }}' id='{{ data.id }}' value='{{ data.value }}' class='{{ data.class }}' placeholder='{{ data.placeholder }}' />
+    </div>
+</script>
+
+<script type="text/html" id="tmpl-grunion-field-telephone">
+    <div>
+        <label for='{{ data.id }}' class='grunion-field-label telephone'>{{ data.label }}{{ data.required }}</label>
+        <input type='tel' name='{{ data.id }}' id='{{ data.id }}' value='{{ data.value }}' class='{{ data.class }}' placeholder='{{ data.placeholder }}' />
+    </div>
+</script>
+
+<script type="text/html" id="tmpl-grunion-field-textarea">
+    <div>
+        <label for='contact-form-comment-{{ data.id }}' class='grunion-field-label textarea'>{{ data.label }}{{ data.required }}</label>
+        <textarea name='{{ data.id }}' id='contact-form-comment-{{ data.id }}' rows='20' class='{{ data.class }}' placeholder='{{ data.placeholder }}'>{{ data.value }}</textarea>
+    </div>
+</script>
+
+<script type="text/html" id="tmpl-grunion-field-radio">
+    <div>
+        <label class='grunion-field-label'>{{ data.label }}{{ data.required }}</label>
+        <# _.each( data.options, function( option ) { #>
+            <label class='grunion-radio-label radio'>
+                <input type='checkbox' name='{{ data.id }}' value='{{ option }}' class="{{ data.class }}" <# if ( option === data.value ) echo "checked='checked'" #> />
+            </label>
+        <# }); #>
+        <div class='clear-form'></div>
+    </div>
+</script>
+
+<script type="text/html" id="tmpl-grunion-field-checkbox">
+    <div>
+        <label class='grunion-field-label checkbox'>
+            <input type='checkbox' name='{{ data.id }}' value='<?php esc_attr__( 'Yes', 'jetpack' ); ?>' class="{{ data.class }}" <# if ( data.value ) echo 'checked="checked"'; #> />
+                {{ data.label }}{{ data.required }}
+        </label>
+        <div class='clear-form'></div>
+    </div>
+</script>
+
+<script type="text/html" id="tmpl-grunion-field-checkbox-multiple">
+    <div>
+        <label class='grunion-field-label'>{{ data.label }}{{ data.required }}</label>
+        <# _.each( data.options, function( option ) { #>
+            <label class='grunion-checkbox-multiple-label checkbox-multiple'>
+                <input type='checkbox' name='{{ data.id }}[]' value='{{ option }}' class="{{ data.class }}" <# if ( option === data.value || _.contains( data.value, option ) ) echo "checked='checked'" #> />
+            </label>
+        <# }); #>
+        <div class='clear-form'></div>
+    </div>
+</script>
+
+<script type="text/html" id="tmpl-grunion-field-select">
+    <div>
+        <label for='{{ data.id }}' class='grunion-field-label select'>{{ data.label }}{{ data.required }}</label>
+        <select name='{{ data.id }}' id='{{ data.id }}' class="{{ data.class }}">
+            <# _.each( data.options, function( option ) { #>
+                <option <# if ( option === data.value ) echo "selected='selected'" #>>{{ option }}</option>
+            <# }); #>
+        </select>
+    </div>
+</script>
+
+<script type="text/html" id="tmpl-grunion-field-date">
+    <div>
+        <label for='{{ data.id }}' class='grunion-field-label {{ data.type }}'>{{ data.label }}{{ data.required }}</label>
+        <input type='date' name='{{ data.id }}' id='{{ data.id }}' value='{{ data.value }}' class="{{ data.class }}" />
+    </div>
+</script>
+
 <script type="text/html" id="tmpl-grunion-field-text">
-
+    <div>
+        <label for='{{ data.id }}' class='grunion-field-label {{ data.type }}'>{{ data.label }}{{ data.required }}</label>
+        <input type='text' name='{{ data.id }}' id='{{ data.id }}' value='{{ data.value }}' class='{{ data.class }}' placeholder='{{ data.placeholder }}' />
+    </div>
 </script>
-        <?php
+
+    <?php
     }
 }
+
 
 Grunion_Editor_View::add_hooks();

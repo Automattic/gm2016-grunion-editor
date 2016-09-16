@@ -13,8 +13,28 @@
         },
         coerce         : wp.media.coerce,
         template       : wp.template( 'grunion-contact-form' ),
-        getContent     : function() {
-            options = {};
+        field_templates: {
+            email               : wp.template( 'grunion-field-email' ),
+            telephone           : wp.template( 'grunion-field-telephone' ),
+            textarea            : wp.template( 'grunion-field-textarea' ),
+            radio               : wp.template( 'grunion-field-radio' ),
+            checkbox            : wp.template( 'grunion-field-checkbox' ),
+            "checkbox-multiple" : wp.template( 'grunion-field-checkbox-multiple' ),
+            select              : wp.template( 'grunion-field-select' ),
+            date                : wp.template( 'grunion-field-date' ),
+            text                : wp.template( 'grunion-field-text' )
+        },
+        getContent     : function( x ) {
+            var body = this.field_templates.email({
+                label : 'Email Address'
+            }) + this.field_templates.textarea({
+                label : 'Message'
+            });
+
+            options = {
+                body : body,
+                submit_button_text : grunionEditorView.labels.submit_button_text
+            };
 
             return this.template( options );
         },
