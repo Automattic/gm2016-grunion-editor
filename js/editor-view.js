@@ -105,7 +105,7 @@
             attrs = {},
             shortcode;
 
-        $modal_wrap.find('.fields').children().each( function( index ){
+        $modal_wrap.find('.fields').children().each( function(){
             var field_shortcode = {
                     tag   : 'contact-field',
                     type  : 'single',
