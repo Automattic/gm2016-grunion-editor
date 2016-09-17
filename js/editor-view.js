@@ -79,6 +79,8 @@
             index = 0,
             named;
 
+        $fields.empty();
+
         if ( ! shortcode.content ) {
             shortcode.content = grunionEditorView.default_form;
         }
