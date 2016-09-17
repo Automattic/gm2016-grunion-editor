@@ -114,12 +114,20 @@
                         type  : $(this).find('select[name=type]').val(),
                     }
                 },
+                options = [];
 
             if ( $(this).find('input[name=required]:checked').length ) {
                 field_shortcode.attrs.required = '1';
             }
 
-            // DO OPTIONS HERE FOR MULTISELECTS
+            $(this).find('input[name=option]').each( function(){
+                if ( $(this).val() ) {
+                    options.push( $(this).val() );
+                }
+            });
+            if ( options.length ) {
+                field_shortcode.attrs.options = options.join(',');
+            }
 
             content += wp.shortcode.string( field_shortcode );
         } );
