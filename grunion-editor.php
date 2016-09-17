@@ -36,6 +36,7 @@ class Grunion_Editor_View {
             'labels'      => array(
                 'submit_button_text' => __( 'Submit', 'jetpack' ),
                 'required_field_text' => apply_filters( 'jetpack_required_field_text', __( '(required)', 'jetpack' ) ),
+                'edit_close_ays' => __( 'Are you sure you\'d like to stop editing this form without saving your changes?', 'jetpack' ),
             )
         ) );
 
