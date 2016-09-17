@@ -107,6 +107,10 @@
 		$(this).closest('li').before( wp.template( 'grunion-field-edit-option' )() );
 	})
 
+	$modal_fields.on( 'change select', 'select[name=type]', function(){
+		$(this).closest('.grunion-field-edit')[0].className = 'card is-compact grunion-field-edit grunion-field-' + $(this).val();
+	});
+
 	save_close = function( event ) {
 		var content = '',
 			attrs = {},
