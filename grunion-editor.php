@@ -139,7 +139,7 @@ class Grunion_Editor_View {
 	</div>
 </script>
 
-<!-- Just dummy stuff for now. -->
+
 <script type="text/html" id="tmpl-grunion-field-edit">
 	<div class="card is-compact grunion-field-edit grunion-field-{{ data.type }}">
 		<input type="text" name="label" placeholder="<?php esc_attr_e( 'Label', 'jetpack' ); ?>" value="{{ data.label }}"/>
@@ -178,17 +178,21 @@ class Grunion_Editor_View {
 			<ol>
 				<# if ( data.options ) { #>
 					<# _.each( data.options, function( option ) { #>
-						<li><input type="text" name="option" value="{{ option }}" /> <a href="#">&times;</a></li>
+						<li><input type="text" name="option" value="{{ option }}" /> <a class="delete-option" href="#">&times;</a></li>
 					<# }); #>
 				<# } else { #>
-					<li><input type="text" name="option" /> <a href="#">&times;</a></li>
-					<li><input type="text" name="option" /> <a href="#">&times;</a></li>
-					<li><input type="text" name="option" /> <a href="#">&times;</a></li>
+					<li><input type="text" name="option" /> <a class="delete-option" href="#">&times;</a></li>
+					<li><input type="text" name="option" /> <a class="delete-option" href="#">&times;</a></li>
+					<li><input type="text" name="option" /> <a class="delete-option" href="#">&times;</a></li>
 				<# } #>
-				<li><a href="#"><?php esc_html_e( 'Add new option...', 'jetpack' ); ?></a></li>
+				<li><a class="add-option" href="#"><?php esc_html_e( 'Add new option...', 'jetpack' ); ?></a></li>
 			</ol>
 		</label>
 	</div>
+</script>
+
+<script type="text/html" id="tmpl-grunion-field-edit-option">
+	<li><input type="text" name="option" /> <a class="delete-option" href="#">&times;</a></li>
 </script>
 
 <div id="grunion-modal-wrap" style="position:relative;display:none">

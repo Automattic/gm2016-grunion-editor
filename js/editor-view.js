@@ -97,6 +97,16 @@
 		$modal_wrap.find( '.submit input[name=submit]' ).off( 'click', save_close ).on( 'click', { callback : update_callback }, save_close );
 	};
 
+	$modal_fields.on( 'click', '.delete-option', function(e){
+		e.preventDefault();
+		$(this).closest('li').remove();
+	});
+
+	$modal_fields.on( 'click', '.add-option', function(e){
+		e.preventDefault();
+		$(this).closest('li').before( wp.template( 'grunion-field-edit-option' )() );
+	})
+
 	save_close = function( event ) {
 		var content = '',
 			attrs = {},
