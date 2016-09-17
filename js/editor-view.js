@@ -120,11 +120,15 @@
             save_close = function() {
                 editor.insertContent( wp.shortcode.string( args ) );
                 $modal_wrap.hide();
+                $modal_wrap.find( '.grunion-modal-backdrop' ).off( 'click', prompt_close );
+                $modal_wrap.find( '.submit input[name=submit]' ).off( 'click', save_close );
             };
 
             prompt_close = function() {
                 if ( confirm( grunionEditorView.labels.edit_close_ays ) ) {
                     $modal_wrap.hide();
+                    $modal_wrap.find( '.grunion-modal-backdrop' ).off( 'click', prompt_close );
+                    $modal_wrap.find( '.submit input[name=submit]' ).off( 'click', save_close );
                 }
             };
 
