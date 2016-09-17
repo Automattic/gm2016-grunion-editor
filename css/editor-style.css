@@ -38,14 +38,18 @@
 	}
 }
 
+.card > div {
+	margin-top: 24px;
+}
+
+.card > div:first-child {
+	margin-top: 0;
+}
+
 
 /* ==========================================================================
 ** Labels
 ** ======================================================================= */
-
-.grunion-field-label {
-	margin-top: 24px;
-}
 
 label {
 	display: block;
