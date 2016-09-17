@@ -84,6 +84,9 @@
                 if ( named.required ) {
                     named.required = grunionEditorView.labels.required_field_text;
                 }
+                if ( named.options ) {
+                    named.options = named.options.split(',');
+                }
                 body += this.field_templates[ named.type ]( named );
             }
 
@@ -112,7 +115,8 @@
 
             open_modal = function( shortcode ) {
                 var $fields = $modal_wrap.find('.fields'),
-                    index = 0;
+                    index = 0,
+                    named;
 
                 if ( ! shortcode.content ) {
                     shortcode.content = grunionEditorView.default_form;
@@ -121,7 +125,11 @@
                 // Render the fields.
                 while ( field = wp.shortcode.next( 'contact-field', shortcode.content, index ) ) {
                     index = field.index + field.content.length;
-                    $fields.append( renderer.edit_template( field.shortcode.attrs.named ) );
+                    named = field.shortcode.attrs.named;
+                    if ( named.options ) {
+                        named.options = named.options.split(',');
+                    }
+                    $fields.append( renderer.edit_template( named ) );
                 }
 
                 $modal_wrap.show();
