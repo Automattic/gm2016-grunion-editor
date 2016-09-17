@@ -142,7 +142,7 @@ class Grunion_Editor_View {
 <!-- Just dummy stuff for now. -->
 <script type="text/html" id="tmpl-grunion-field-edit">
     <div class="grunion-field-edit grunion-field-{{ data.type }}">
-        <input type="text" placeholder="<?php esc_attr_e( 'Label', 'jetpack' ); ?>" />
+        <input type="text" placeholder="<?php esc_attr_e( 'Label', 'jetpack' ); ?>" value="{{ data.label }}"/>
 
         <?php
         $grunion_field_types = array(
@@ -169,8 +169,8 @@ class Grunion_Editor_View {
         </label>
 
         <label>
+            <input type="checkbox" name="required" value="1" <# if ( data.required ) print( 'checked="checked"' ) #> />
             <?php esc_html_e( 'Required?', 'jetpack' ); ?>
-            <input type="checkbox" name="required" />
         </label>
 
         <label class="options">

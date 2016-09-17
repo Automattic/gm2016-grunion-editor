@@ -14,6 +14,7 @@
         },
         coerce         : wp.media.coerce,
         template       : wp.template( 'grunion-contact-form' ),
+        edit_template  : wp.template( 'grunion-field-edit' ),
         field_templates: {
             email               : wp.template( 'grunion-field-email' ),
             telephone           : wp.template( 'grunion-field-telephone' ),
@@ -110,8 +111,19 @@
                 open_modal, save_close, prompt_close;
 
             open_modal = function( shortcode ) {
-                console.log( shortcode );
-                console.log( $modal_wrap );
+                var $fields = $modal_wrap.find('.fields'),
+                    index = 0;
+
+                if ( ! shortcode.content ) {
+                    shortcode.content = grunionEditorView.default_form;
+                }
+
+                // Render the fields.
+                while ( field = wp.shortcode.next( 'contact-field', shortcode.content, index ) ) {
+                    index = field.index + field.content.length;
+                    $fields.append( renderer.edit_template( field.shortcode.attrs.named ) );
+                }
+
                 $modal_wrap.show();
                 $modal_wrap.find( '.grunion-modal-backdrop' ).on( 'click', prompt_close );
                 $modal_wrap.find( '.submit input[name=submit]' ).on( 'click', save_close );

@@ -38,3 +38,20 @@
     opacity: 0.7;
     z-index: 159900;
 }
+
+.grunion-field-edit {
+    border: 1px solid #333;
+    border-radious: 3px;
+    background: #eee;
+    margin: 5px;
+}
+
+.grunion-field-edit .options {
+    display: none;
+}
+
+.grunion-field-edit.grunion-field-checkbox-multiple .options,
+.grunion-field-edit.grunion-field-radio .options,
+.grunion-field-edit.grunion-field-select .options {
+    display: block;
+}
