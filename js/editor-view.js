@@ -1,4 +1,4 @@
-/* global tinyMCE, grunionEditorView */
+/* global grunionEditorView */
 (function( $, wp, grunionEditorView ){
     wp.mce = wp.mce || {};
     if ( 'undefined' === typeof wp.mce.views ) {
@@ -62,19 +62,18 @@
 
             return this.template( options );
         },
-        edit: function( data ) {
             var shortcode_data = wp.shortcode.next( this.shortcode_string, data ),
                 renderer = this;
+        edit: function( data, update_callback ) {
 
             $modal_wrap = $('#grunion-modal-wrap');
 
-            open_modal( shortcode_data.shortcode, this );
-
+            open_modal( shortcode_data.shortcode, this, update_callback );
         }
     };
     wp.mce.views.register( 'contact-form', wp.mce.grunion_wp_view_renderer );
 
-    open_modal = function( shortcode, renderer ) {
+    open_modal = function( shortcode, renderer, update_callback ) {
         var $fields = $modal_wrap.find('.fields'),
             index = 0,
             named;
@@ -97,10 +96,10 @@
 
         $modal_wrap.show();
         $modal_wrap.find( '.grunion-modal-backdrop' ).off( 'click', prompt_close ).on( 'click', prompt_close );
-        $modal_wrap.find( '.submit input[name=submit]' ).off( 'click', save_close ).on( 'click', save_close );
+        $modal_wrap.find( '.submit input[name=submit]' ).off( 'click', save_close ).on( 'click', { callback : update_callback }, save_close );
     };
 
-    save_close = function() {
+    save_close = function( event ) {
         var content = '',
             attrs = {},
             shortcode;
@@ -140,7 +139,7 @@
             content : content,
             attrs   : attrs
         };
-        tinyMCE.activeEditor.insertContent( wp.shortcode.string( shortcode ) );
+        event.data.callback( wp.shortcode.string( shortcode ) );
         $modal_wrap.hide();
     };
 
