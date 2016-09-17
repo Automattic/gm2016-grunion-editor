@@ -130,7 +130,7 @@
             content += wp.shortcode.string( field_shortcode );
         } );
 
-        attrs = {}; // _.pick( named, _.keys( renderer.defaults ) )
+        attrs = {};
 
         shortcode = {
             tag     : 'contact-form',
