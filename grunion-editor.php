@@ -138,6 +138,64 @@ class Grunion_Editor_View {
     </div>
 </script>
 
+<!-- Just dummy stuff for now. -->
+<script type="text/html" id="tmpl-grunion-field-edit">
+    <div class="grunion-field-edit grunion-field-{{ data.type }}">
+        <input type="text" placeholder="<?php esc_attr_e( 'Label', 'jetpack' ); ?>" />
+
+        <?php
+        $grunion_field_types = array(
+            'text'              => __( 'Text', 'jetpack' ),
+            'name'              => __( 'Name', 'jetpack' ),
+            'email'             => __( 'Email', 'jetpack' ),
+            'url'               => __( 'Website', 'jetpack' ),
+            'textarea'          => __( 'Textarea', 'jetpack' ),
+            'checkbox'          => __( 'Checkbox', 'jetpack' ),
+            'checkbox-multiple' => __( 'Checkbox with Multiple Items', 'jetpack' ),
+            'select'            => __( 'Drop down', 'jetpack' ),
+            'radio'             => __( 'Radio', 'jetpack' ),
+        );
+        ?>
+        <label>
+            <?php esc_html_e( 'Field Type', 'jetpack' ); ?>
+            <select name="type">
+                <?php foreach ( $grunion_field_types as $type => $label ) : ?>
+                <option <# if ( '<?php echo esc_js( $type ); ?>' === data.type ) print( "selected='selected'" ) #> value="<?php echo esc_attr( $type ); ?>">
+                    <?php echo esc_html( $label ); ?>
+                    </option>
+                    <?php endforeach; ?>
+            </select>
+        </label>
+
+        <label>
+            <?php esc_html_e( 'Required?', 'jetpack' ); ?>
+            <input type="checkbox" name="required" />
+        </label>
+
+        <label class="options">
+            <?php esc_html_e( 'Options', 'jetpack' ); ?>
+            <ol>
+                <li><input type="text" /> <a href="#">&times;</a></li>
+                <li><input type="text" /> <a href="#">&times;</a></li>
+                <li><input type="text" /> <a href="#">&times;</a></li>
+                <li><a href="#"><?php esc_html_e( 'Add new option...', 'jetpack' ); ?></a></li>
+            </ol>
+        </label>
+    </div>
+</script>
+
+<div id="grunion-modal-wrap" style="position:relative;display:none">
+    <div class="grunion-modal wp-core-ui">
+        <div class="fields">
+
+        </div>
+        <div class="form-settings">
+
+        </div>
+        <?php submit_button( esc_html__( 'Update Form', 'jetpack' ), 'primary' ); ?>
+    </div>
+    <div class="grunion-modal-backdrop"></div>
+</div>
     <?php
     }
 }
