@@ -83,8 +83,8 @@ class Grunion_Editor_View {
         <label class='grunion-field-label'>{{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #></label>
         <# _.each( data.options, function( option ) { #>
             <label class='grunion-radio-label radio'>
-                <input type='checkbox' name='{{ data.id }}' value='{{ option }}' class="{{ data.class }}" <# if ( option === data.value ) print( "checked='checked'" ) #> />
-                {{ option }}
+                <input type='radio' name='{{ data.id }}' value='{{ option }}' class="{{ data.class }}" <# if ( option === data.value ) print( "checked='checked'" ) #> />
+                <span>{{ option }}</span>
             </label>
         <# }); #>
         <div class='clear-form'></div>
@@ -95,7 +95,7 @@ class Grunion_Editor_View {
     <div>
         <label class='grunion-field-label checkbox'>
             <input type='checkbox' name='{{ data.id }}' value='<?php esc_attr__( 'Yes', 'jetpack' ); ?>' class="{{ data.class }}" <# if ( data.value ) print( 'checked="checked"' ) #> />
-                {{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #>
+                <span>{{ data.label }}</span><# if ( data.required ) print( " <span>" + data.required + "</span>" ) #>
         </label>
         <div class='clear-form'></div>
     </div>
@@ -107,7 +107,7 @@ class Grunion_Editor_View {
         <# _.each( data.options, function( option ) { #>
             <label class='grunion-checkbox-multiple-label checkbox-multiple'>
                 <input type='checkbox' name='{{ data.id }}[]' value='{{ option }}' class="{{ data.class }}" <# if ( option === data.value || _.contains( data.value, option ) ) print( "checked='checked'" ) #> />
-                {{ option }}
+                <span>{{ option }}</span>
             </label>
         <# }); #>
         <div class='clear-form'></div>

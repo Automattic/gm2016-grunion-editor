@@ -2,11 +2,14 @@
 ** Labels
 ** ======================================================================= */
 
+.grunion-field-label {
+	margin-top: 24px;
+}
+
 label {
 	display: block;
 	font-size: 14px;
 	font-weight: 600;
-	margin-top: 24px;
 	margin-bottom: 5px;
 }
 
@@ -166,13 +169,15 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked:before {
-	content: '\f147'; // Dashicons
+	content: '\f147';
+	font-family: Dashicons;
 	margin: -3px 0 0 -4px;
 	float: left;
 	display: inline-block;
 	vertical-align: middle;
 	width: 16px;
 	font-size: 20px;
+	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	speak: none;
@@ -204,12 +209,24 @@ input[type="checkbox"]:disabled:hover {
 	cursor: default;
 }
 
+input[type="checkbox"] + span {
+	display: block;
+	font-weight: normal;
+	margin-left: 24px;
+}
+
 
 /* ==========================================================================
 ** Radio buttons
 ** ======================================================================== */
 
 input[type=radio] {
+	color: #2e4453;
+	font-size: 16px;
+	border: 1px solid #c8d7e1;
+	background-color: #fff;
+	transition: all .15s ease-in-out;
+	box-sizing: border-box;
 	-webkit-appearance: none;
 	clear: none;
 	cursor: pointer;
@@ -229,7 +246,21 @@ input[type=radio] {
 	line-height: 10px;
 }
 
-input[type=radio]:checked:before {
+input[type="radio"]:hover {
+	border-color: #a8bece;
+}
+
+input[type="radio"]:focus {
+	border-color: #0087be;
+	outline: none;
+	box-shadow: 0 0 0 2px #78dcfa;
+}
+
+input[type="radio"]:focus::-ms-clear {
+	display: none;
+}
+
+input[type="radio"]:checked:before {
 	float: left;
 	display: inline-block;
 	content: '\2022';
@@ -243,8 +274,30 @@ input[type=radio]:checked:before {
 	animation: grow .2s ease-in-out;
 }
 
-input[type=radio]:disabled:checked:before {
+input[type="radio"]:disabled {
+	background: #f3f6f8;
+	border-color: #e9eff3;
+	color: #a8bece;
+	opacity: 1;
+	-webkit-text-fill-color: #a8bece;
+}
+
+input[type="radio"]:disabled:hover {
+	cursor: default;
+}
+
+input[type="radio"]:disabled::placeholder {
+	color: #a8bece;
+}
+
+input[type="radio"]:disabled:checked:before {
 	background: #e9eff3;
+}
+
+input[type="radio"] + span {
+	display: block;
+	font-weight: normal;
+	margin-left: 24px;
 }
 
 @keyframes grow {
