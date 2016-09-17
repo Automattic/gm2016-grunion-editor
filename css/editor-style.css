@@ -1,4 +1,45 @@
 /* ==========================================================================
+** Card
+** ======================================================================= */
+
+.card {
+	display: block;
+	position: relative;
+	margin: 0 auto 10px auto;
+	padding: 16px;
+	box-sizing: border-box;
+	background: white;
+	box-shadow: 0 0 0 1px rgba(200, 215, 225, 0.5), 0 1px 2px #e9eff3;
+}
+
+.card:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+@media ( min-width: 481px ) {
+	.card {
+		margin-bottom: 16px;
+		padding: 24px;
+	}
+}
+
+.card.is-compact {
+	margin-bottom: 1px;
+}
+
+@media ( min-width: 481px ) {
+	.card.is-compact {
+		margin-bottom: 1px;
+		padding: 16px 24px;
+	}
+}
+
+
+/* ==========================================================================
 ** Labels
 ** ======================================================================= */
 
@@ -21,7 +62,7 @@ label {
 input[type="text"],
 input[type="tel"],
 input[type="email"] {
-  border-radius: 0;
+	border-radius: 0;
 	appearance: none;
 	box-sizing: border-box;
 	margin: 0;
@@ -89,7 +130,7 @@ input[type="email"]:disabled::placeholder {
 ** ======================================================================= */
 
 textarea {
-  border-radius: 0;
+	border-radius: 0;
 	appearance: none;
 	box-sizing: border-box;
 	margin: 0;
