@@ -107,13 +107,13 @@
 
         $modal_wrap.find('.fields').children().each( function( index ){
             var field_shortcode = {
-                tag   : 'contact-field',
-                type  : 'single',
-                attrs : {
-                    label : $(this).find('input[name=label]').val(),
-                    type  : $(this).find('select[name=type]').val(),
-                }
-            };
+                    tag   : 'contact-field',
+                    type  : 'single',
+                    attrs : {
+                        label : $(this).find('input[name=label]').val(),
+                        type  : $(this).find('select[name=type]').val(),
+                    }
+                },
 
             if ( $(this).find('input[name=required]:checked').length ) {
                 field_shortcode.attrs.required = '1';
