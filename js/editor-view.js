@@ -62,9 +62,8 @@
 
             return this.template( options );
         },
-            var shortcode_data = wp.shortcode.next( this.shortcode_string, data ),
-                renderer = this;
         edit: function( data, update_callback ) {
+            var shortcode_data = wp.shortcode.next( this.shortcode_string, data );
 
             $modal_wrap = $('#grunion-modal-wrap');
 
