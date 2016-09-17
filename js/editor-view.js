@@ -7,7 +7,7 @@
 
 	// Yes, it's silly to query it and then give it to jQuery, but it seems to glitch otherwise.
 	var $modal_wrap   = $( document.getElementById('grunion-modal-wrap') ),
-		$modal_fields = $modal_wrap.find('.fields'),
+		$modal_fields = $modal_wrap.find('.grunion-fields'),
 		open_modal, save_close, prompt_close;
 
 	wp.mce.grunion_wp_view_renderer = {

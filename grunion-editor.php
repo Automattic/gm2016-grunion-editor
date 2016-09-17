@@ -141,7 +141,7 @@ class Grunion_Editor_View {
 
 <!-- Just dummy stuff for now. -->
 <script type="text/html" id="tmpl-grunion-field-edit">
-	<div class="grunion-field-edit grunion-field-{{ data.type }}">
+	<div class="card is-compact grunion-field-edit grunion-field-{{ data.type }}">
 		<input type="text" name="label" placeholder="<?php esc_attr_e( 'Label', 'jetpack' ); ?>" value="{{ data.label }}"/>
 
 		<?php
@@ -193,8 +193,7 @@ class Grunion_Editor_View {
 
 <div id="grunion-modal-wrap" style="position:relative;display:none">
 	<div class="grunion-modal wp-core-ui">
-		<div class="fields">
-
+		<div class="grunion-fields">
 		</div>
 		<div class="form-settings">
 
