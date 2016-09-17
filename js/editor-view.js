@@ -5,7 +5,10 @@
 		return;
 	}
 
-	var $modal_wrap, open_modal, save_close, prompt_close;
+	// Yes, it's silly to query it and then give it to jQuery, but it seems to glitch otherwise.
+	var $modal_wrap   = $( document.getElementById('grunion-modal-wrap') ),
+		$modal_fields = $modal_wrap.find('.fields'),
+		open_modal, save_close, prompt_close;
 
 	wp.mce.grunion_wp_view_renderer = {
 		shortcode_string : 'contact-form',
@@ -64,20 +67,16 @@
 		},
 		edit: function( data, update_callback ) {
 			var shortcode_data = wp.shortcode.next( this.shortcode_string, data );
-
-			$modal_wrap = $('#grunion-modal-wrap');
-
 			open_modal( shortcode_data.shortcode, this, update_callback );
 		}
 	};
 	wp.mce.views.register( 'contact-form', wp.mce.grunion_wp_view_renderer );
 
 	open_modal = function( shortcode, renderer, update_callback ) {
-		var $fields = $modal_wrap.find('.fields'),
-			index = 0,
+		var index = 0,
 			named;
 
-		$fields.empty();
+		$modal_fields.empty();
 
 		if ( ! shortcode.content ) {
 			shortcode.content = grunionEditorView.default_form;
@@ -90,7 +89,7 @@
 			if ( named.options && 'string' === typeof named.options ) {
 				named.options = named.options.split(',');
 			}
-			$fields.append( renderer.edit_template( named ) );
+			$modal_fields.append( renderer.edit_template( named ) );
 		}
 
 		$modal_wrap.show();
@@ -103,7 +102,7 @@
 			attrs = {},
 			shortcode;
 
-		$modal_wrap.find('.fields').children().each( function(){
+		$modal_fields.children().each( function(){
 			var field_shortcode = {
 					tag   : 'contact-field',
 					type  : 'single',

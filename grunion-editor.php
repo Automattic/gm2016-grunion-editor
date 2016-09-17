@@ -23,7 +23,7 @@ class Grunion_Editor_View {
 			return;
 		}
 
-		add_action( 'admin_print_footer_scripts', array( __CLASS__, 'editor_view_js_templates' ) );
+		add_action( 'admin_print_footer_scripts', array( __CLASS__, 'editor_view_js_templates' ), 1 );
 
 		wp_enqueue_style( 'grunion-editor-ui', plugins_url( 'css/editor-ui.css', __FILE__ ) );
 		wp_enqueue_script( 'grunion-editor-view', plugins_url( 'js/editor-view.js', __FILE__ ), array( 'wp-util', 'jquery' ), false, true );
