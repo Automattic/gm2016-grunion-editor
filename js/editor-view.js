@@ -126,7 +126,8 @@
                 while ( field = wp.shortcode.next( 'contact-field', shortcode.content, index ) ) {
                     index = field.index + field.content.length;
                     named = field.shortcode.attrs.named;
-                    if ( named.options ) {
+                    if ( named.options && 'string' === typeof named.options ) {
+                        console.log( named.options );
                         named.options = named.options.split(',');
                     }
                     $fields.append( renderer.edit_template( named ) );

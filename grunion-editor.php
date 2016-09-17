@@ -176,9 +176,15 @@ class Grunion_Editor_View {
         <label class="options">
             <?php esc_html_e( 'Options', 'jetpack' ); ?>
             <ol>
-                <li><input type="text" /> <a href="#">&times;</a></li>
-                <li><input type="text" /> <a href="#">&times;</a></li>
-                <li><input type="text" /> <a href="#">&times;</a></li>
+                <# if ( data.options ) { #>
+                    <# _.each( data.options, function( option ) { #>
+                        <li><input type="text" value="{{ option }}" /> <a href="#">&times;</a></li>
+                    <# }); #>
+                <# } else { #>
+                    <li><input type="text" /> <a href="#">&times;</a></li>
+                    <li><input type="text" /> <a href="#">&times;</a></li>
+                    <li><input type="text" /> <a href="#">&times;</a></li>
+                <# } #>
                 <li><a href="#"><?php esc_html_e( 'Add new option...', 'jetpack' ); ?></a></li>
             </ol>
         </label>
