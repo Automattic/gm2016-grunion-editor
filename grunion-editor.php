@@ -12,6 +12,24 @@
 class Grunion_Editor_View {
 	public static function add_hooks() {
 		add_action( 'admin_notices', array( __CLASS__, 'handle_editor_view_js' ) );
+		add_filter( 'mce_external_plugins', array( __CLASS__, 'mce_external_plugins' ) );
+		add_filter( 'mce_buttons', array( __CLASS__, 'mce_buttons' ) );
+	}
+
+	public static function mce_external_plugins( $plugin_array ) {
+		$plugin_array['grunion_form'] =  plugins_url( 'js/tinymce-plugin-form-button.js', __FILE__ );
+		return $plugin_array;
+	}
+
+	public static function mce_buttons( $buttons ) {
+		$size = sizeof( $buttons );
+		$buttons1 = array_slice( $buttons, 0, $size - 1 );
+		$buttons2 = array_slice( $buttons, $size - 1 );
+		return array_merge(
+			$buttons1,
+			array( 'grunion' ),
+			$buttons2
+		);
 	}
 
 	/**
