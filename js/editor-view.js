@@ -171,9 +171,9 @@
 	};
 
 	prompt_close = function() {
-		if ( confirm( grunionEditorView.labels.edit_close_ays ) ) {
+		// if ( confirm( grunionEditorView.labels.edit_close_ays ) ) {
 			$modal_wrap.hide();
-		}
+		// }
 	};
 
 	QTags.addButton(
