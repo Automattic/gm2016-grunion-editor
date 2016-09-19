@@ -596,9 +596,7 @@ input[type="submit"].is-primary {
 ** ======================================================================= */
 
 .grunion-modal-wrap * {
-	-webkit-box-sizing: content-box;
-	-moz-box-sizing: content-box;
-	box-sizing: content-box;
+	box-sizing: border-box;
 }
 
 .grunion-modal {
@@ -612,7 +610,7 @@ input[type="submit"].is-primary {
 	overflow: auto;
 }
 
-.grunion-modal .submit {
+.grunion-modal .buttons {
 	margin: 0;
 	padding: 10px;
 	position: fixed;
@@ -621,11 +619,32 @@ input[type="submit"].is-primary {
 		left: 30px;
 	background: #eee;
 	border-top: 1px solid #ccc;
-	text-align: right;
+	text-align: left;
+	overflow: hidden;
+}
+
+.grunion-modal .buttons input[name=add-field] {
+	float: left;
+}
+
+.grunion-modal .buttons input[name=submit] {
+	float: right;
 }
 
 .grunion-fields {
-	margin: 24px 24px 74px;
+	padding: 24px 24px 74px;
+	width: 75%;
+	float: left;
+}
+
+.grunion-form-settings {
+	position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+	padding: 24px 24px 74px;
+	width: 25%;
+	background: #eee;
 }
 
 .grunion-modal-backdrop {

@@ -8,6 +8,7 @@
 	// Yes, it's silly to query it and then give it to jQuery, but it seems to glitch otherwise.
 	var $modal_wrap   = $( document.getElementById('grunion-modal-wrap') ),
 		$modal_fields = $modal_wrap.find('.grunion-fields'),
+		$modal_add_btn= $modal_wrap.find('.buttons input[name=add-field]'),
 		open_modal, save_close, prompt_close;
 
 	wp.mce.grunion_wp_view_renderer = {
@@ -92,9 +93,12 @@
 			$modal_fields.append( renderer.edit_template( named ) );
 		}
 
+		$modal_wrap.find('input[name=to]').val( shortcode.attrs.named.to );
+		$modal_wrap.find('input[name=subject]').val( shortcode.attrs.named.subject );
+
 		$modal_wrap.show();
 		$modal_wrap.find( '.grunion-modal-backdrop' ).off( 'click', prompt_close ).on( 'click', prompt_close );
-		$modal_wrap.find( '.submit input[name=submit]' ).off( 'click', save_close ).on( 'click', { callback : update_callback }, save_close );
+		$modal_wrap.find( '.buttons input[name=submit]' ).off( 'click', save_close ).on( 'click', { callback : update_callback }, save_close );
 	};
 
 	$modal_fields.on( 'click', '.delete-option', function(e){
@@ -109,6 +113,10 @@
 
 	$modal_fields.on( 'change select', 'select[name=type]', function(){
 		$(this).closest('.grunion-field-edit')[0].className = 'card is-compact grunion-field-edit grunion-field-' + $(this).val();
+	});
+
+	$modal_add_btn.on( 'click', function(){
+		$modal_fields.append( wp.mce.grunion_wp_view_renderer.edit_template({}) );
 	});
 
 	save_close = function( event ) {
@@ -143,7 +151,12 @@
 			content += wp.shortcode.string( field_shortcode );
 		} );
 
-		attrs = {};
+		if ( $modal_wrap.find('input[name=to]').val() ) {
+			attrs.to = $modal_wrap.find('input[name=to]').val();
+		}
+		if ( $modal_wrap.find('input[name=subject]').val() ) {
+			attrs.subject = $modal_wrap.find('input[name=subject]').val();
+		}
 
 		shortcode = {
 			tag     : 'contact-form',

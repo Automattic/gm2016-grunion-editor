@@ -199,10 +199,18 @@ class Grunion_Editor_View {
 	<div class="grunion-modal wp-core-ui">
 		<div class="grunion-fields">
 		</div>
-		<div class="form-settings">
-
+		<div class="grunion-form-settings">
+			<label><?php esc_html_e( 'What email address should we send the submissions to?', 'jetpack' ); ?>
+				<input type="text" name="to" value="" />
+			</label>
+			<label><?php esc_html_e( 'What would you like the subject of the email to be?', 'jetpack' ); ?>
+				<input type="text" name="subject" value="" />
+			</label>
 		</div>
-		<?php submit_button( esc_html__( 'Update Form', 'jetpack' ), 'primary' ); ?>
+		<div class="buttons">
+			<?php submit_button( esc_html__( 'Add Field', 'jetpack' ), 'secondary', 'add-field', false ); ?>
+			<?php submit_button( esc_html__( 'Update Form', 'jetpack' ), 'primary', 'submit', false ); ?>
+		</div>
 	</div>
 	<div class="grunion-modal-backdrop"></div>
 </div>
