@@ -49,7 +49,7 @@ class Grunion_Editor_View {
 		add_action( 'admin_print_footer_scripts', array( __CLASS__, 'editor_view_js_templates' ), 1 );
 
 		wp_enqueue_style( 'grunion-editor-ui', plugins_url( 'css/editor-ui.css', __FILE__ ) );
-		wp_enqueue_script( 'grunion-editor-view', plugins_url( 'js/editor-view.js', __FILE__ ), array( 'wp-util', 'jquery' ), false, true );
+		wp_enqueue_script( 'grunion-editor-view', plugins_url( 'js/editor-view.js', __FILE__ ), array( 'wp-util', 'jquery', 'quicktags' ), false, true );
 		wp_localize_script( 'grunion-editor-view', 'grunionEditorView', array(
 			'home_url_host'     => parse_url( home_url(), PHP_URL_HOST ),
 			'default_form'  => '[contact-field label="' . __( 'Name', 'jetpack' ) . '" type="name"  required="true" /]
@@ -60,6 +60,7 @@ class Grunion_Editor_View {
 				'submit_button_text' => __( 'Submit', 'jetpack' ),
 				'required_field_text' => apply_filters( 'jetpack_required_field_text', __( '(required)', 'jetpack' ) ),
 				'edit_close_ays' => __( 'Are you sure you\'d like to stop editing this form without saving your changes?', 'jetpack' ),
+				'quicktags_label' => __( 'contact form', 'jetpack' ),
 				'tinymce_label' => __( 'Add contact form', 'jetpack' ),
 			)
 		) );

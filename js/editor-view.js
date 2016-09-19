@@ -1,4 +1,4 @@
-/* global grunionEditorView */
+/* global grunionEditorView, QTags */
 (function( $, wp, grunionEditorView ){
 	wp.mce = wp.mce || {};
 	if ( 'undefined' === typeof wp.mce.views ) {
@@ -175,5 +175,13 @@
 			$modal_wrap.hide();
 		}
 	};
+
+	QTags.addButton(
+		'grunion_shortcode',
+		grunionEditorView.labels.quicktags_label,
+		function(){
+			QTags.insertContent( '[contact-form]' + grunionEditorView.default_form + '[/contact-form]' );
+		}
+	);
 
 }( jQuery, wp, grunionEditorView ));
