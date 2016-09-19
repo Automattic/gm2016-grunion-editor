@@ -21,6 +21,7 @@
 		coerce         : wp.media.coerce,
 		template       : wp.template( 'grunion-contact-form' ),
 		edit_template  : wp.template( 'grunion-field-edit' ),
+		editor_inline  : wp.template( 'grunion-editor-inline' ),
 		field_templates: {
 			email               : wp.template( 'grunion-field-email' ),
 			telephone           : wp.template( 'grunion-field-telephone' ),
@@ -67,8 +68,40 @@
 			return this.template( options );
 		},
 		edit: function( data, update_callback ) {
-			var shortcode_data = wp.shortcode.next( this.shortcode_string, data );
-			open_modal( shortcode_data.shortcode, this, update_callback );
+			var shortcode_data = wp.shortcode.next( this.shortcode_string, data ),
+				shortcode = shortcode_data.shortcode,
+				$tinyMCE_document = $( tinyMCE.activeEditor.getDoc() ),
+				$view = $tinyMCE_document.find('.wpview.wpview-wrap').filter(function(){
+					return $(this).data('mce-selected');
+				}),
+				$editframe = $('<iframe />'),
+				index = 0,
+				named,
+				fields = '';
+
+			if ( ! shortcode.content ) {
+				shortcode.content = grunionEditorView.default_form;
+			}
+
+			// Render the fields.
+			while ( field = wp.shortcode.next( 'contact-field', shortcode.content, index ) ) {
+				index = field.index + field.content.length;
+				named = field.shortcode.attrs.named;
+				if ( named.options && 'string' === typeof named.options ) {
+					named.options = named.options.split(',');
+				}
+				fields += this.edit_template( named );
+			}
+
+			$view.html( $editframe );
+
+			$editframe.contents().find('body').html( this.editor_inline( {
+				to : shortcode.attrs.to,
+				subject : shortcode.attrs.subject,
+				fields : fields
+			}) );
+
+			// update_callback( wp.shortcode.string( shortcode_data.shortcode ) );
 		}
 	};
 	wp.mce.views.register( 'contact-form', wp.mce.grunion_wp_view_renderer );

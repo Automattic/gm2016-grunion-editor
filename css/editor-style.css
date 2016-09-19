@@ -590,3 +590,13 @@ input[type="submit"].is-primary:disabled {
 input[type="submit"].is-primary {
 		color: white;
 }
+
+.wpview.wpview-wrap[data-wpview-type=contact-form] {
+
+}
+
+.wpview.wpview-wrap[data-wpview-type=contact-form] iframe {
+	width: 100%;
+	min-height: 500px;
+	border: 0;
+}
