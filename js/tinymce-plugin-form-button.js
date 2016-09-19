@@ -1,9 +1,10 @@
+/* global grunionEditorView */
 (function() {
     tinymce.create( 'tinymce.plugins.grunion_form', {
 
         init : function( editor ) {
             editor.addButton( 'grunion', {
-                title : 'Insert contact form',
+                title : grunionEditorView.labels.tinymce_label,
                 cmd   : 'grunion_add_form',
                 icon  : 'grunion'
             });
