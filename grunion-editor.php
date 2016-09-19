@@ -52,10 +52,10 @@ class Grunion_Editor_View {
 		wp_enqueue_script( 'grunion-editor-view', plugins_url( 'js/editor-view.js', __FILE__ ), array( 'wp-util', 'jquery', 'quicktags' ), false, true );
 		wp_localize_script( 'grunion-editor-view', 'grunionEditorView', array(
 			'home_url_host'     => parse_url( home_url(), PHP_URL_HOST ),
-			'default_form'  => '[contact-field label="' . __( 'Name', 'jetpack' ) . '" type="name"  required="true" /]
-								[contact-field label="' . __( 'Email', 'jetpack' )   . '" type="email" required="true" /]
-								[contact-field label="' . __( 'Website', 'jetpack' ) . '" type="url" /]
-								[contact-field label="' . __( 'Message', 'jetpack' ) . '" type="textarea" /]',
+			'default_form'  => '[contact-field label="' . __( 'Name', 'jetpack' ) . '" type="name"  required="true" /]' .
+								'[contact-field label="' . __( 'Email', 'jetpack' )   . '" type="email" required="true" /]' .
+								'[contact-field label="' . __( 'Website', 'jetpack' ) . '" type="url" /]' .
+								'[contact-field label="' . __( 'Message', 'jetpack' ) . '" type="textarea" /]',
 			'labels'      => array(
 				'submit_button_text' => __( 'Submit', 'jetpack' ),
 				'required_field_text' => apply_filters( 'jetpack_required_field_text', __( '(required)', 'jetpack' ) ),
