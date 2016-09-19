@@ -97,7 +97,7 @@
 		$modal_wrap.find('input[name=subject]').val( shortcode.attrs.named.subject );
 
 		$modal_wrap.show();
-		$modal_wrap.find( '.grunion-modal-backdrop' ).off( 'click', prompt_close ).on( 'click', prompt_close );
+		$modal_wrap.find( '.grunion-modal-backdrop, .grunion-modal-close' ).off( 'click', prompt_close ).on( 'click', prompt_close );
 		$modal_wrap.find( '.buttons input[name=submit]' ).off( 'click', save_close ).on( 'click', { callback : update_callback }, save_close );
 		$modal_fields.sortable();
 	};

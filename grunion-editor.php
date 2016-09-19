@@ -225,6 +225,11 @@ class Grunion_Editor_View {
 
 <div id="grunion-modal-wrap" style="position:relative;display:none">
 	<div class="grunion-modal wp-core-ui">
+		<button type="button" class="button-link media-modal-close grunion-modal-close">
+			<span class="media-modal-icon">
+				<span class="screen-reader-text"><?php esc_html_e( 'Close form editor', 'jetpack' ); ?></span>
+			</span>
+		</button>
 		<div class="grunion-fields">
 		</div>
 		<div class="grunion-form-settings">
