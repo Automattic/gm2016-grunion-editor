@@ -173,7 +173,7 @@ class Grunion_Editor_View {
 
 		<label>
 			<input type="checkbox" name="required" value="1" <# if ( data.required ) print( 'checked="checked"' ) #> />
-			<?php esc_html_e( 'Required?', 'jetpack' ); ?>
+			<span><?php esc_html_e( 'Required?', 'jetpack' ); ?></span>
 		</label>
 
 		<label class="options">
