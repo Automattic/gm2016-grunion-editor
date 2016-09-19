@@ -14,6 +14,11 @@ class Grunion_Editor_View {
 		add_action( 'admin_notices', array( __CLASS__, 'handle_editor_view_js' ) );
 		add_filter( 'mce_external_plugins', array( __CLASS__, 'mce_external_plugins' ) );
 		add_filter( 'mce_buttons', array( __CLASS__, 'mce_buttons' ) );
+		add_action( 'admin_head', array( __CLASS__, 'admin_head' ) );
+	}
+
+	public static function admin_head() {
+		remove_action( 'media_buttons', 'grunion_media_button', 999 );
 	}
 
 	public static function mce_external_plugins( $plugin_array ) {
