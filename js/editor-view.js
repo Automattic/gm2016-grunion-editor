@@ -99,6 +99,7 @@
 		$modal_wrap.show();
 		$modal_wrap.find( '.grunion-modal-backdrop' ).off( 'click', prompt_close ).on( 'click', prompt_close );
 		$modal_wrap.find( '.buttons input[name=submit]' ).off( 'click', save_close ).on( 'click', { callback : update_callback }, save_close );
+		$modal_fields.sortable();
 	};
 
 	$modal_fields.on( 'click', '.delete-option', function(e){
@@ -117,6 +118,7 @@
 
 	$modal_add_btn.on( 'click', function(){
 		$modal_fields.append( wp.mce.grunion_wp_view_renderer.edit_template({}) );
+		$modal_fields.sortable('refresh');
 	});
 
 	save_close = function( event ) {
