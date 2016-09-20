@@ -1,11 +1,22 @@
 /* ==========================================================================
+** Normalize
+** ======================================================================== */
+
+body,
+label {
+	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+	font-size: 16px;
+	line-height: 1.4em;
+}
+
+/* ==========================================================================
 ** Card
 ** ======================================================================= */
 
 .card {
 	display: block;
 	position: relative;
-	margin: 0 auto 10px auto;
+	margin: 0 auto;
 	padding: 16px;
 	box-sizing: border-box;
 	background: white;
@@ -22,19 +33,7 @@
 
 @media ( min-width: 481px ) {
 	.card {
-		margin-bottom: 16px;
 		padding: 24px;
-	}
-}
-
-.card.is-compact {
-	margin-bottom: 1px;
-}
-
-@media ( min-width: 481px ) {
-	.card.is-compact {
-		margin-bottom: 1px;
-		padding: 16px 24px;
 	}
 }
 
@@ -591,9 +590,9 @@ input[type="submit"].is-primary {
 		color: white;
 }
 
-.wpview.wpview-wrap[data-wpview-type=contact-form] {
-
-}
+/* ==========================================================================
+** Preview styles
+** ======================================================================== */
 
 .wpview.wpview-wrap[data-wpview-type=contact-form] iframe.inline-edit-contact-form {
 	width: 100%;

@@ -204,7 +204,7 @@ class Grunion_Editor_View {
 			<span><?php esc_html_e( 'Required?', 'jetpack' ); ?></span>
 		</label>
 
-		<label class="options">
+		<label class="grunion-options">
 			<?php esc_html_e( 'Options', 'jetpack' ); ?>
 			<ol>
 				<# if ( data.options ) { #>
@@ -229,12 +229,12 @@ class Grunion_Editor_View {
 <script type="text/html" id="tmpl-grunion-editor-inline">
 	<div id="grunion-inline-wrap">
 		<div class="grunion-modal wp-core-ui">
-			<div class="grunion-form-settings">
-				<label><?php esc_html_e( 'What email address should we send the submissions to?', 'jetpack' ); ?>
-					<input type="text" name="to" value="{{ data.to }}" />
-				</label>
+			<div class="card grunion-form-settings">
 				<label><?php esc_html_e( 'What would you like the subject of the email to be?', 'jetpack' ); ?>
 					<input type="text" name="subject" value="{{ data.subject }}" />
+				</label>
+				<label><?php esc_html_e( 'Which email address should we send the submissions to?', 'jetpack' ); ?>
+					<input type="text" name="to" value="{{ data.to }}" />
 				</label>
 			</div>
 			<div class="grunion-fields">
