@@ -10,6 +10,19 @@ body {
 	padding: 1px;
 }
 
+/* Links */
+a,
+a:visited {
+	color: #0087be;
+	text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a:active {
+	color: $link-highlight;
+}
+
 /* ==========================================================================
 ** Card
 ** ======================================================================= */
@@ -73,6 +86,11 @@ label {
 	font-size: 14px;
 	font-weight: 600;
 	margin-bottom: 5px;
+	margin-top: 24px;
+}
+
+label:first-of-type {
+	margin-top: 7px;
 }
 
 
@@ -631,10 +649,19 @@ input[type="submit"].is-primary {
 ** Inline editor styles
 ** ======================================================================== */
 
+.ui-sortable-helper.card{
+	background: #e9eff3;
+}
+
+.grunion-section-header {
+	font-size: 21px;
+	margin-top: 32px;
+}
+
 .grunion-options ol {
 	list-style: none;
 	padding: 0;
-	margin: 0 0 0 24px;
+	margin: 8px 0 0;
 }
 
 .grunion-options li {
@@ -642,21 +669,29 @@ input[type="submit"].is-primary {
 	margin-bottom: 16px;
 }
 
-.grunion-field-edit .options {
+.grunion-field-edit .grunion-options {
 	display: none;
 }
 
-.delete-option {
+.delete-option,
+.delete-field {
 	color: #0087be;
 	text-decoration: none;
 	width: 40px;
 	line-height: 40px;
 	font-size: 21px;
 	text-align: center;
+	font-weight: 600;
+}
+
+.delete-field {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 .grunion-field-edit.grunion-field-checkbox-multiple .options,
-.grunion-field-edit.grunion-field-radio .options,
-.grunion-field-edit.grunion-field-select .options {
+.grunion-field-edit.grunion-field-radio .grunion-options,
+.grunion-field-edit.grunion-field-select .grunion-options {
 	display: block;
 }
