@@ -20,6 +20,11 @@
     visibility: hidden;
 }
 
+.card .delete-field {
+    display: block;
+    float: right;
+}
+
 @media ( min-width: 481px ) {
     .card {
         margin-bottom: 16px;

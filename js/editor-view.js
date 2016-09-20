@@ -179,6 +179,12 @@
 				$(this).closest('li').before( wp.template( 'grunion-field-edit-option' )() );
                 $editframe.trigger('checkheight');
 			});
+
+            $editfields.on( 'click', '.delete-field', function(e){
+                e.preventDefault();
+                $(this).closest('.card').remove();
+                $editframe.trigger('checkheight');
+            });
 		}
 	};
 	wp.mce.views.register( 'contact-form', wp.mce.grunion_wp_view_renderer );
