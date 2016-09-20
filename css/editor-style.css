@@ -595,8 +595,9 @@ input[type="submit"].is-primary {
 
 }
 
-.wpview.wpview-wrap[data-wpview-type=contact-form] iframe {
+.wpview.wpview-wrap[data-wpview-type=contact-form] iframe.inline-edit-contact-form {
 	width: 100%;
 	min-height: 500px;
 	border: 0;
+	overflow: hidden;
 }

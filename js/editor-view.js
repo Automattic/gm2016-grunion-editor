@@ -5,12 +5,6 @@
 		return;
 	}
 
-	// Yes, it's silly to query it and then give it to jQuery, but it seems to glitch otherwise.
-	var $modal_wrap   = $( document.getElementById('grunion-modal-wrap') ),
-		$modal_fields = $modal_wrap.find('.grunion-fields'),
-		$modal_add_btn= $modal_wrap.find('.buttons input[name=add-field]'),
-		open_modal, save_close, prompt_close;
-
 	wp.mce.grunion_wp_view_renderer = {
 		shortcode_string : 'contact-form',
 		shortcode_data : {},
@@ -18,10 +12,7 @@
 			to      : '',
 			subject : ''
 		},
-		coerce         : wp.media.coerce,
 		template       : wp.template( 'grunion-contact-form' ),
-		edit_template  : wp.template( 'grunion-field-edit' ),
-		editor_inline  : wp.template( 'grunion-editor-inline' ),
 		field_templates: {
 			email               : wp.template( 'grunion-field-email' ),
 			telephone           : wp.template( 'grunion-field-telephone' ),
@@ -33,6 +24,8 @@
 			date                : wp.template( 'grunion-field-date' ),
 			text                : wp.template( 'grunion-field-text' )
 		},
+		edit_template  : wp.template( 'grunion-field-edit' ),
+		editor_inline  : wp.template( 'grunion-editor-inline' ),
 		getContent     : function() {
 			var content = this.shortcode.content,
 				index = 0,
@@ -74,10 +67,12 @@
 				$view = $tinyMCE_document.find('.wpview.wpview-wrap').filter(function(){
 					return $(this).data('mce-selected');
 				}),
-				$editframe = $('<iframe />'),
+				$editframe = $('<iframe scrolling="no" class="inline-edit-contact-form" />'),
 				index = 0,
 				named,
-				fields = '';
+				fields = '',
+				$stylesheet = $( '<link rel="stylesheet" href="' + grunionEditorView.inline_editing_style + '" />' ),
+				$editfields;
 
 			if ( ! shortcode.content ) {
 				shortcode.content = grunionEditorView.default_form;
@@ -96,119 +91,99 @@
 			$view.html( $editframe );
 
 			$editframe.contents().find('body').html( this.editor_inline( {
-				to : shortcode.attrs.to,
-				subject : shortcode.attrs.subject,
-				fields : fields
+				to      : shortcode.attrs.named.to,
+				subject : shortcode.attrs.named.subject,
+				fields  : fields
 			}) );
 
-			// update_callback( wp.shortcode.string( shortcode_data.shortcode ) );
+			$editframe.contents().find('head').append( $stylesheet );
+			$stylesheet.on( 'load', function(){
+				$editframe.trigger('checkheight');
+			});
+
+			$editframe.on('checkheight', function(){
+				console.log( 'Checking height: ' + this.contentWindow.document.body.scrollHeight );
+				this.style.height = '10px';
+				this.style.height = ( 5 + this.contentWindow.document.body.scrollHeight ) + 'px';
+				// ??? tinyMCE.activeEditor.execCommand('mceAutoResize');
+			}).trigger('checkheight');
+
+			$editfields = $editframe.contents().find('.grunion-fields');
+			$editfields.sortable();
+			$editfields.on( 'change select', 'select[name=type]', function(){
+				$(this).closest('.grunion-field-edit')[0].className = 'card is-compact grunion-field-edit grunion-field-' + $(this).val();
+				$editframe.trigger('checkheight');
+			});
+
+			var $buttons = $editframe.contents().find('.buttons');
+			$buttons.find('input[name=submit]').on( 'click', function(){
+				var new_data = shortcode;
+
+				new_data.attrs = {};
+				new_data.content = '';
+
+				$editfields.children().each( function(){
+					var field_shortcode = {
+							tag   : 'contact-field',
+							type  : 'single',
+							attrs : {
+								label : $(this).find('input[name=label]').val(),
+								type  : $(this).find('select[name=type]').val(),
+							}
+						},
+						options = [];
+
+					if ( $(this).find('input[name=required]:checked').length ) {
+						field_shortcode.attrs.required = '1';
+					}
+
+					$(this).find('input[name=option]').each( function(){
+						if ( $(this).val() ) {
+							options.push( $(this).val() );
+						}
+					});
+					if ( options.length ) {
+						field_shortcode.attrs.options = options.join(',');
+					}
+
+					new_data.content += wp.shortcode.string( field_shortcode );
+				} );
+
+				if ( $editframe.contents().find('input[name=to]').val() ) {
+					new_data.attrs.to = $editframe.contents().find('input[name=to]').val();
+				}
+				if ( $editframe.contents().find('input[name=subject]').val() ) {
+					new_data.attrs.subject = $editframe.contents().find('input[name=subject]').val();
+				}
+
+				update_callback( wp.shortcode.string( new_data ) );
+			});
+			$buttons.find('input[name=cancel]').on( 'click', function(){
+				update_callback( wp.shortcode.string( shortcode ) );
+			});
+			$buttons.find('input[name=add-field]').on( 'click', function(){
+				$editfields.append( wp.mce.grunion_wp_view_renderer.edit_template({}) );
+				$editfields.sortable('refresh');
+				$editframe.trigger('checkheight');
+			});
+
+
+			$editfields.on( 'click', '.delete-option', function(e){
+				e.preventDefault();
+				$(this).closest('li').remove();
+                $editframe.trigger('checkheight');
+			});
+
+			$editfields.on( 'click', '.add-option', function(e){
+				e.preventDefault();
+				$(this).closest('li').before( wp.template( 'grunion-field-edit-option' )() );
+                $editframe.trigger('checkheight');
+			});
 		}
 	};
 	wp.mce.views.register( 'contact-form', wp.mce.grunion_wp_view_renderer );
 
-	open_modal = function( shortcode, renderer, update_callback ) {
-		var index = 0,
-			named;
-
-		$modal_fields.empty();
-
-		if ( ! shortcode.content ) {
-			shortcode.content = grunionEditorView.default_form;
-		}
-
-		// Render the fields.
-		while ( field = wp.shortcode.next( 'contact-field', shortcode.content, index ) ) {
-			index = field.index + field.content.length;
-			named = field.shortcode.attrs.named;
-			if ( named.options && 'string' === typeof named.options ) {
-				named.options = named.options.split(',');
-			}
-			$modal_fields.append( renderer.edit_template( named ) );
-		}
-
-		$modal_wrap.find('input[name=to]').val( shortcode.attrs.named.to );
-		$modal_wrap.find('input[name=subject]').val( shortcode.attrs.named.subject );
-
-		$modal_wrap.show();
-		$modal_wrap.find( '.grunion-modal-backdrop, .grunion-modal-close' ).off( 'click', prompt_close ).on( 'click', prompt_close );
-		$modal_wrap.find( '.buttons input[name=submit]' ).off( 'click', save_close ).on( 'click', { callback : update_callback }, save_close );
-		$modal_fields.sortable();
-	};
-
-	$modal_fields.on( 'click', '.delete-option', function(e){
-		e.preventDefault();
-		$(this).closest('li').remove();
-	});
-
-	$modal_fields.on( 'click', '.add-option', function(e){
-		e.preventDefault();
-		$(this).closest('li').before( wp.template( 'grunion-field-edit-option' )() );
-	})
-
-	$modal_fields.on( 'change select', 'select[name=type]', function(){
-		$(this).closest('.grunion-field-edit')[0].className = 'card is-compact grunion-field-edit grunion-field-' + $(this).val();
-	});
-
-	$modal_add_btn.on( 'click', function(){
-		$modal_fields.append( wp.mce.grunion_wp_view_renderer.edit_template({}) );
-		$modal_fields.sortable('refresh');
-	});
-
-	save_close = function( event ) {
-		var content = '',
-			attrs = {},
-			shortcode;
-
-		$modal_fields.children().each( function(){
-			var field_shortcode = {
-					tag   : 'contact-field',
-					type  : 'single',
-					attrs : {
-						label : $(this).find('input[name=label]').val(),
-						type  : $(this).find('select[name=type]').val(),
-					}
-				},
-				options = [];
-
-			if ( $(this).find('input[name=required]:checked').length ) {
-				field_shortcode.attrs.required = '1';
-			}
-
-			$(this).find('input[name=option]').each( function(){
-				if ( $(this).val() ) {
-					options.push( $(this).val() );
-				}
-			});
-			if ( options.length ) {
-				field_shortcode.attrs.options = options.join(',');
-			}
-
-			content += wp.shortcode.string( field_shortcode );
-		} );
-
-		if ( $modal_wrap.find('input[name=to]').val() ) {
-			attrs.to = $modal_wrap.find('input[name=to]').val();
-		}
-		if ( $modal_wrap.find('input[name=subject]').val() ) {
-			attrs.subject = $modal_wrap.find('input[name=subject]').val();
-		}
-
-		shortcode = {
-			tag     : 'contact-form',
-			type    : 'closed',
-			content : content,
-			attrs   : attrs
-		};
-		event.data.callback( wp.shortcode.string( shortcode ) );
-		$modal_wrap.hide();
-	};
-
-	prompt_close = function() {
-		// if ( confirm( grunionEditorView.labels.edit_close_ays ) ) {
-			$modal_wrap.hide();
-		// }
-	};
-
+	// Add the 'text' editor button.
 	QTags.addButton(
 		'grunion_shortcode',
 		grunionEditorView.labels.quicktags_label,
