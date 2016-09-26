@@ -2,11 +2,25 @@
 ** Normalize
 ** ======================================================================== */
 
-body,
-label {
+body {
 	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 	font-size: 16px;
 	line-height: 1.4em;
+	margin: 0;
+	padding: 1px;
+}
+
+/* Links */
+a,
+a:visited {
+	color: #0087be;
+	text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a:active {
+	color: $link-highlight;
 }
 
 /* ==========================================================================
@@ -16,7 +30,7 @@ label {
 .card {
 	display: block;
 	position: relative;
-	margin: 0 auto;
+	margin: 0 auto 10px auto;
 	padding: 16px;
 	box-sizing: border-box;
 	background: white;
@@ -31,9 +45,26 @@ label {
 	visibility: hidden;
 }
 
+.card .delete-field {
+	display: block;
+	float: right;
+}
+
 @media ( min-width: 481px ) {
 	.card {
+		margin-bottom: 16px;
 		padding: 24px;
+	}
+}
+
+.card.is-compact {
+	margin-bottom: 1px;
+}
+
+@media ( min-width: 481px ) {
+	.card.is-compact {
+		margin-bottom: 1px;
+		padding: 16px 24px;
 	}
 }
 
@@ -55,6 +86,11 @@ label {
 	font-size: 14px;
 	font-weight: 600;
 	margin-bottom: 5px;
+	margin-top: 24px;
+}
+
+label:first-of-type {
+	margin-top: 7px;
 }
 
 
@@ -187,6 +223,7 @@ textarea:disabled::placeholder {
 ** Checkboxes
 ** ======================================================================= */
 
+.checkbox,
 input[type="checkbox"] {
 	-webkit-appearance: none;
 	display: inline-block;
@@ -212,6 +249,7 @@ input[type="checkbox"] {
 	cursor: pointer;
 }
 
+.checkbox:checked:before,
 input[type="checkbox"]:checked:before {
 	content: '\f147';
 	font-family: Dashicons;
@@ -228,20 +266,24 @@ input[type="checkbox"]:checked:before {
 	color: #00aadc;
 }
 
+.checkbox:disabled:checked:before,
 input[type="checkbox"]:disabled:checked:before {
 	color: #a8bece;
 }
 
+.checkbox:hover,
 input[type="checkbox"]:hover {
 	border-color: #a8bece;
 }
 
+.checkbox:focus,
 input[type="checkbox"]:focus {
 	border-color: #0087be;
 	outline: none;
 	box-shadow: 0 0 0 2px #78dcfa;
 }
 
+.checkbox:disabled,
 input[type="checkbox"]:disabled {
 	background: #f3f6f8;
 	border-color: #e9eff3;
@@ -249,10 +291,12 @@ input[type="checkbox"]:disabled {
 	opacity: 1;
 }
 
+.checkbox:disabled:hover,
 input[type="checkbox"]:disabled:hover {
 	cursor: default;
 }
 
+.checkbox + span,
 input[type="checkbox"] + span {
 	display: block;
 	font-weight: normal;
@@ -264,6 +308,7 @@ input[type="checkbox"] + span {
 ** Radio buttons
 ** ======================================================================== */
 
+.radio-button,
 input[type=radio] {
 	color: #2e4453;
 	font-size: 16px;
@@ -290,20 +335,24 @@ input[type=radio] {
 	line-height: 10px;
 }
 
+.radio-button:hover,
 input[type="radio"]:hover {
 	border-color: #a8bece;
 }
 
+.radio-button:focus,
 input[type="radio"]:focus {
 	border-color: #0087be;
 	outline: none;
 	box-shadow: 0 0 0 2px #78dcfa;
 }
 
+.radio-button:focus::-ms-clear,
 input[type="radio"]:focus::-ms-clear {
 	display: none;
 }
 
+.radio-button:checked:before,
 input[type="radio"]:checked:before {
 	float: left;
 	display: inline-block;
@@ -318,6 +367,7 @@ input[type="radio"]:checked:before {
 	animation: grow .2s ease-in-out;
 }
 
+.radio-button:disabled,
 input[type="radio"]:disabled {
 	background: #f3f6f8;
 	border-color: #e9eff3;
@@ -326,18 +376,22 @@ input[type="radio"]:disabled {
 	-webkit-text-fill-color: #a8bece;
 }
 
+.radio-button:disabled:hover,
 input[type="radio"]:disabled:hover {
 	cursor: default;
 }
 
+.radio-button:disabled::placeholder,
 input[type="radio"]:disabled::placeholder {
 	color: #a8bece;
 }
 
+.radio-button:disabled:checked::before,
 input[type="radio"]:disabled:checked:before {
 	background: #e9eff3;
 }
 
+.radio-button + span,
 input[type="radio"] + span {
 	display: block;
 	font-weight: normal;
@@ -469,7 +523,7 @@ input[type="submit"] {
 	font-size: 14px;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-			 appearance: none;
+	appearance: none;
 	vertical-align: baseline;
 	background: white;
 	border-color: #c8d7e1;
@@ -492,7 +546,7 @@ input[type="submit"] {
 	padding: 7px 14px 9px;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-			 appearance: none;
+	appearance: none;
 }
 
 input[type="submit"]:hover {
@@ -587,16 +641,57 @@ input[type="submit"].is-primary:disabled {
 }
 
 input[type="submit"].is-primary {
-		color: white;
+	color: white;
 }
 
+
 /* ==========================================================================
-** Preview styles
+** Inline editor styles
 ** ======================================================================== */
 
-.wpview.wpview-wrap[data-wpview-type=contact-form] iframe.inline-edit-contact-form {
-	width: 100%;
-	min-height: 500px;
-	border: 0;
-	overflow: hidden;
+.ui-sortable-helper.card{
+	background: #e9eff3;
+}
+
+.grunion-section-header {
+	font-size: 21px;
+	margin-top: 32px;
+}
+
+.grunion-options ol {
+	list-style: none;
+	padding: 0;
+	margin: 8px 0 0;
+}
+
+.grunion-options li {
+	display: flex;
+	margin-bottom: 16px;
+}
+
+.grunion-field-edit .grunion-options {
+	display: none;
+}
+
+.delete-option,
+.delete-field {
+	color: #0087be;
+	text-decoration: none;
+	width: 40px;
+	line-height: 40px;
+	font-size: 21px;
+	text-align: center;
+	font-weight: 600;
+}
+
+.delete-field {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.grunion-field-edit.grunion-field-checkbox-multiple .options,
+.grunion-field-edit.grunion-field-radio .grunion-options,
+.grunion-field-edit.grunion-field-select .grunion-options {
+	display: block;
 }

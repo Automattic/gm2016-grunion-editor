@@ -51,6 +51,7 @@ class Grunion_Editor_View {
 		wp_enqueue_style( 'grunion-editor-ui', plugins_url( 'css/editor-ui.css', __FILE__ ) );
 		wp_enqueue_script( 'grunion-editor-view', plugins_url( 'js/editor-view.js', __FILE__ ), array( 'wp-util', 'jquery', 'quicktags' ), false, true );
 		wp_localize_script( 'grunion-editor-view', 'grunionEditorView', array(
+			'inline_editing_style' => plugins_url( 'css/editor-inline-editing-style.css', __FILE__ ),
 			'home_url_host'     => parse_url( home_url(), PHP_URL_HOST ),
 			'default_form'  => '[contact-field label="' . __( 'Name', 'jetpack' ) . '" type="name"  required="true" /]' .
 								'[contact-field label="' . __( 'Email', 'jetpack' )   . '" type="email" required="true" /]' .
@@ -167,6 +168,8 @@ class Grunion_Editor_View {
 
 <script type="text/html" id="tmpl-grunion-field-edit">
 	<div class="card is-compact grunion-field-edit grunion-field-{{ data.type }}">
+		<a href="javascript:;" class="delete-field">&times;</a>
+
 		<label>
 			<span>Field name</span>
 			<input type="text" name="label" placeholder="<?php esc_attr_e( 'Label', 'jetpack' ); ?>" value="{{ data.label }}"/>
@@ -201,52 +204,53 @@ class Grunion_Editor_View {
 			<span><?php esc_html_e( 'Required?', 'jetpack' ); ?></span>
 		</label>
 
-		<label class="options">
+		<label class="grunion-options">
 			<?php esc_html_e( 'Options', 'jetpack' ); ?>
 			<ol>
 				<# if ( data.options ) { #>
 					<# _.each( data.options, function( option ) { #>
-						<li><input type="text" name="option" value="{{ option }}" /> <a class="delete-option" href="#">&times;</a></li>
+						<li><input type="text" name="option" value="{{ option }}" /> <a class="delete-option" href="javascript:;">&times;</a></li>
 					<# }); #>
 				<# } else { #>
-					<li><input type="text" name="option" /> <a class="delete-option" href="#">&times;</a></li>
-					<li><input type="text" name="option" /> <a class="delete-option" href="#">&times;</a></li>
-					<li><input type="text" name="option" /> <a class="delete-option" href="#">&times;</a></li>
+					<li><input type="text" name="option" /> <a class="delete-option" href="javascript:;">&times;</a></li>
+					<li><input type="text" name="option" /> <a class="delete-option" href="javascript:;">&times;</a></li>
+					<li><input type="text" name="option" /> <a class="delete-option" href="javascript:;">&times;</a></li>
 				<# } #>
-				<li><a class="add-option" href="#"><?php esc_html_e( 'Add new option...', 'jetpack' ); ?></a></li>
+				<li><a class="add-option" href="javascript:;"><?php esc_html_e( 'Add new option...', 'jetpack' ); ?></a></li>
 			</ol>
 		</label>
 	</div>
 </script>
 
 <script type="text/html" id="tmpl-grunion-field-edit-option">
-	<li><input type="text" name="option" /> <a class="delete-option" href="#">&times;</a></li>
+	<li><input type="text" name="option" /> <a class="delete-option" href="javascript:;">&times;</a></li>
 </script>
 
-<div id="grunion-modal-wrap" style="position:relative;display:none">
-	<div class="grunion-modal wp-core-ui">
-		<button type="button" class="button-link media-modal-close grunion-modal-close">
-			<span class="media-modal-icon">
-				<span class="screen-reader-text"><?php esc_html_e( 'Close form editor', 'jetpack' ); ?></span>
-			</span>
-		</button>
-		<div class="grunion-fields">
+<script type="text/html" id="tmpl-grunion-editor-inline">
+	<div id="grunion-inline-wrap">
+		<div class="grunion-modal wp-core-ui">
+			<h1 class="grunion-section-header">Settings</h1>
+			<div class="card grunion-form-settings">
+				<label><?php esc_html_e( 'What would you like the subject of the email to be?', 'jetpack' ); ?>
+					<input type="text" name="subject" value="{{ data.subject }}" />
+				</label>
+				<label><?php esc_html_e( 'Which email address should we send the submissions to?', 'jetpack' ); ?>
+					<input type="text" name="to" value="{{ data.to }}" />
+				</label>
+			</div>
+			<h1 class="grunion-section-header">Form fields</h1>
+			<div class="grunion-fields">
+				{{{ data.fields }}}
+			</div>
+			<div class="buttons">
+				<?php submit_button( esc_html__( 'Add Field', 'jetpack' ), 'secondary', 'add-field', false ); ?>
+				<?php submit_button( esc_html__( 'Update Form', 'jetpack' ), 'primary', 'submit', false ); ?>
+				<?php submit_button( esc_html__( 'Cancel', 'jetpack' ), 'delete', 'cancel', false ); ?>
+			</div>
 		</div>
-		<div class="grunion-form-settings">
-			<label><?php esc_html_e( 'What email address should we send the submissions to?', 'jetpack' ); ?>
-				<input type="text" name="to" value="" />
-			</label>
-			<label><?php esc_html_e( 'What would you like the subject of the email to be?', 'jetpack' ); ?>
-				<input type="text" name="subject" value="" />
-			</label>
-		</div>
-		<div class="buttons">
-			<?php submit_button( esc_html__( 'Add Field', 'jetpack' ), 'secondary', 'add-field', false ); ?>
-			<?php submit_button( esc_html__( 'Update Form', 'jetpack' ), 'primary', 'submit', false ); ?>
-		</div>
+		<div class="grunion-modal-backdrop"></div>
 	</div>
-	<div class="grunion-modal-backdrop"></div>
-</div>
+</script>
 	<?php
 	}
 }
