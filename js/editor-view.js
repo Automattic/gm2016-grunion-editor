@@ -1,4 +1,4 @@
-/* global grunionEditorView, QTags */
+/* global grunionEditorView, tinyMCE, QTags */
 (function( $, wp, grunionEditorView ){
 	wp.mce = wp.mce || {};
 	if ( 'undefined' === typeof wp.mce.views ) {
@@ -105,7 +105,7 @@
 				console.log( 'Checking height: ' + this.contentWindow.document.body.scrollHeight );
 				this.style.height = '10px';
 				this.style.height = ( 5 + this.contentWindow.document.body.scrollHeight ) + 'px';
-				// ??? tinyMCE.activeEditor.execCommand('mceAutoResize');
+				tinyMCE.activeEditor.execCommand('wpAutoResize');
 			}).trigger('checkheight');
 
 			$editfields = $editframe.contents().find('.grunion-fields');
