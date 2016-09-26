@@ -119,6 +119,7 @@
 			$buttons.find('input[name=submit]').on( 'click', function(){
 				var new_data = shortcode;
 
+				new_data.type = 'closed';
 				new_data.attrs = {};
 				new_data.content = '';
 
