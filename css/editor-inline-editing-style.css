@@ -7,7 +7,7 @@ body {
 	font-size: 16px;
 	line-height: 1.4em;
 	margin: 0;
-	padding: 1px;
+	padding: 0 1em;
 }
 
 /* Links */
@@ -649,6 +649,15 @@ input[type="submit"].is-primary {
 ** Inline editor styles
 ** ======================================================================== */
 
+.card.grunion-form-settings {
+	background: #f5f5f5;
+}
+
+.card.grunion-field-edit {
+	margin-bottom: 0.5em;
+	background: #f5f5f5;
+}
+
 .ui-sortable-helper.card{
 	background: #e9eff3;
 }
@@ -656,6 +665,25 @@ input[type="submit"].is-primary {
 .grunion-section-header {
 	font-size: 21px;
 	margin-top: 32px;
+}
+
+.grunion-type {
+	float: left;
+	width: 60%;
+}
+
+.grunion-type select {
+	width: 100%;
+}
+
+.grunion-required {
+	float: right;
+	width: 30%;
+	padding-top: 2em;
+}
+
+.grunion-options {
+	clear: both;
 }
 
 .grunion-options ol {

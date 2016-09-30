@@ -170,7 +170,7 @@ class Grunion_Editor_View {
 	<div class="card is-compact grunion-field-edit grunion-field-{{ data.type }}">
 		<a href="javascript:;" class="delete-field">&times;</a>
 
-		<label>
+		<label class="grunion-name">
 			<span>Field name</span>
 			<input type="text" name="label" placeholder="<?php esc_attr_e( 'Label', 'jetpack' ); ?>" value="{{ data.label }}"/>
 		</label>
@@ -188,7 +188,7 @@ class Grunion_Editor_View {
 			'radio'             => __( 'Radio', 'jetpack' ),
 		);
 		?>
-		<label>
+		<label class="grunion-type">
 			<?php esc_html_e( 'Field Type', 'jetpack' ); ?>
 			<select name="type">
 				<?php foreach ( $grunion_field_types as $type => $label ) : ?>
@@ -199,7 +199,7 @@ class Grunion_Editor_View {
 			</select>
 		</label>
 
-		<label>
+		<label class="grunion-required">
 			<input type="checkbox" name="required" value="1" <# if ( data.required ) print( 'checked="checked"' ) #> />
 			<span><?php esc_html_e( 'Required?', 'jetpack' ); ?></span>
 		</label>
