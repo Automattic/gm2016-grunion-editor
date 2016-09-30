@@ -145,7 +145,7 @@ class Grunion_Editor_View {
 		<label for='{{ data.id }}' class='grunion-field-label select'>{{ data.label }}<# if ( data.required ) print( " <span>" + data.required + "</span>" ) #></label>
 		<select name='{{ data.id }}' id='{{ data.id }}' class="{{ data.class }}">
 			<# _.each( data.options, function( option ) { #>
-				<option <# if ( option === data.value ) print( "selected='selected'" ) #>>foo{{ option }}</option>
+				<option <# if ( option === data.value ) print( "selected='selected'" ) #>>{{ option }}</option>
 			<# }); #>
 		</select>
 	</div>
