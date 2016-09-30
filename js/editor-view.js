@@ -91,16 +91,16 @@
 
 			$view.html( $editframe );
 
+			$editframe.contents().find('head').append( $stylesheet ).append( $dashicons_css );
+			$stylesheet.on( 'load', function(){
+				$editframe.trigger('checkheight');
+			});
+
 			$editframe.contents().find('body').html( this.editor_inline( {
 				to      : shortcode.attrs.named.to,
 				subject : shortcode.attrs.named.subject,
 				fields  : fields
 			}) );
-
-			$editframe.contents().find('head').append( $stylesheet ).append( $dashicons_css );
-			$stylesheet.on( 'load', function(){
-				$editframe.trigger('checkheight');
-			});
 
 			$editframe.on('checkheight', function(){
 				console.log( 'Checking height: ' + this.contentWindow.document.body.scrollHeight );
