@@ -72,6 +72,7 @@
 				named,
 				fields = '',
 				$stylesheet = $( '<link rel="stylesheet" href="' + grunionEditorView.inline_editing_style + '" />' ),
+				$dashicons_css  = $( '<link rel="stylesheet" href="' + grunionEditorView.dashicons_css_url + '" />' ),
 				$editfields;
 
 			if ( ! shortcode.content ) {
@@ -96,7 +97,7 @@
 				fields  : fields
 			}) );
 
-			$editframe.contents().find('head').append( $stylesheet );
+			$editframe.contents().find('head').append( $stylesheet ).append( $dashicons_css );
 			$stylesheet.on( 'load', function(){
 				$editframe.trigger('checkheight');
 			});
