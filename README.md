@@ -7,7 +7,7 @@ Further, we also wanted to improve the editing experience, by making it support 
 
 To use this, it needs to be installed alongside Jetpack, with the Contact Forms module active.  Then just go into a post editor and add a contact form!
 
-[![Preview of the new way of editing forms](https://img.youtube.com/vi/EqqKAiv7e_c/0.jpg)](https://www.youtube.com/watch?v=EqqKAiv7e_c)
+[https://videopress.com/v/fVfVICkl](https://videopress.com/v/fVfVICkl)
 
 Trivia!
 =======
