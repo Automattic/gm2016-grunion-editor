@@ -690,7 +690,7 @@ input[type="submit"].is-primary {
 	right: 0;
 }
 
-.grunion-field-edit.grunion-field-checkbox-multiple .options,
+.grunion-field-edit.grunion-field-checkbox-multiple .grunion-options,
 .grunion-field-edit.grunion-field-radio .grunion-options,
 .grunion-field-edit.grunion-field-select .grunion-options {
 	display: block;
