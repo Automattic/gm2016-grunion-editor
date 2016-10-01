@@ -65,7 +65,7 @@
 				shortcode = shortcode_data.shortcode,
 				$tinyMCE_document = $( tinyMCE.activeEditor.getDoc() ),
 				$view = $tinyMCE_document.find('.wpview.wpview-wrap').filter(function(){
-					return $(this).data('mce-selected');
+					return $(this).attr('data-mce-selected');
 				}),
 				$editframe = $('<iframe scrolling="no" class="inline-edit-contact-form" />'),
 				index = 0,
