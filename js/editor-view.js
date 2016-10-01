@@ -7,11 +7,6 @@
 
 	wp.mce.grunion_wp_view_renderer = {
 		shortcode_string : 'contact-form',
-		shortcode_data : {},
-		defaults       : {
-			to      : '',
-			subject : ''
-		},
 		template       : wp.template( 'grunion-contact-form' ),
 		field_templates: {
 			email               : wp.template( 'grunion-field-email' ),
