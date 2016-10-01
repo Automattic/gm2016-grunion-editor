@@ -165,6 +165,11 @@
 				$editframe.trigger('checkheight');
 			});
 
+			$editframe.contents().find('.form-settings-toggle').on('click', function(e){
+				e.preventDefault();
+				$(this).closest('body').toggleClass('show-form-settings');
+				$editframe.trigger('checkheight');
+			});
 
 			$editfields.on( 'click', '.delete-option', function(e){
 				e.preventDefault();
