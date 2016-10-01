@@ -26,6 +26,7 @@
 		},
 		edit_template  : wp.template( 'grunion-field-edit' ),
 		editor_inline  : wp.template( 'grunion-editor-inline' ),
+		editor_option  : wp.template( 'grunion-field-edit-option' ),
 		getContent     : function() {
 			var content = this.shortcode.content,
 				index = 0,
@@ -178,7 +179,7 @@
 
 			$editfields.on( 'click', '.add-option', function(e){
 				e.preventDefault();
-				$(this).closest('li').before( wp.template( 'grunion-field-edit-option' )() );
+				$(this).closest('li').before( wp.mce.grunion_wp_view_renderer.editor_option() );
 				$editframe.trigger('checkheight');
 			});
 
