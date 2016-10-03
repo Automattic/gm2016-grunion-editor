@@ -229,7 +229,7 @@ class Grunion_Editor_View {
 <script type="text/html" id="tmpl-grunion-editor-inline">
 	<div id="grunion-inline-wrap">
 		<div class="grunion-modal wp-core-ui">
-			<h1 class="grunion-section-header">Settings</h1>
+			<h1 class="grunion-section-header"><?php esc_html_e( 'Form Settings', 'jetpack' ); ?></h1>
 			<div class="card grunion-form-settings">
 				<label><?php esc_html_e( 'What would you like the subject of the email to be?', 'jetpack' ); ?>
 					<input type="text" name="subject" value="{{ data.subject }}" />
@@ -238,7 +238,7 @@ class Grunion_Editor_View {
 					<input type="text" name="to" value="{{ data.to }}" />
 				</label>
 			</div>
-			<h1 class="grunion-section-header">Form fields</h1>
+			<h1 class="grunion-section-header"><?php esc_html_e( 'Form Fields', 'jetpack' ); ?></h1>
 			<div class="grunion-fields">
 				{{{ data.fields }}}
 			</div>
