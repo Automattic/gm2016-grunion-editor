@@ -718,8 +718,29 @@ input[type="submit"].is-primary {
 	right: 0;
 }
 
+.delete-option:before,
+.delete-field:before {
+	font-family: Dashicons;
+/*	content: "\f158"; /* This is the bolder X */
+	content: "\f335"; /* This is the thinner X */
+	display: inline-block;
+	speak: none;
+}
+
 .grunion-field-edit.grunion-field-checkbox-multiple .grunion-options,
 .grunion-field-edit.grunion-field-radio .grunion-options,
 .grunion-field-edit.grunion-field-select .grunion-options {
 	display: block;
+}
+
+.screen-reader-text {
+	position: absolute;
+	margin: -1px;
+	padding: 0;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	border: 0;
+	word-wrap: normal !important; /* many screen reader and browser combinations announce broken words as they would appear visually */
 }

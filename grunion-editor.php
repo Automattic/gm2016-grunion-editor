@@ -168,7 +168,7 @@ class Grunion_Editor_View {
 
 <script type="text/html" id="tmpl-grunion-field-edit">
 	<div class="card is-compact grunion-field-edit grunion-field-{{ data.type }}">
-		<a href="javascript:;" class="delete-field">&times;</a>
+		<a href="javascript:;" class="delete-field"><span class="screen-reader-text"><?php esc_html_e( 'Delete Field', 'jetpack' ); ?></span></a>
 
 		<label class="grunion-name">
 			<span>Field name</span>
@@ -209,12 +209,12 @@ class Grunion_Editor_View {
 			<ol>
 				<# if ( data.options ) { #>
 					<# _.each( data.options, function( option ) { #>
-						<li><input type="text" name="option" value="{{ option }}" /> <a class="delete-option" href="javascript:;">&times;</a></li>
+						<li><input type="text" name="option" value="{{ option }}" /> <a class="delete-option" href="javascript:;"><span class="screen-reader-text"><?php esc_html_e( 'Delete Option', 'jetpack' ); ?></span></a></li>
 					<# }); #>
 				<# } else { #>
-					<li><input type="text" name="option" /> <a class="delete-option" href="javascript:;">&times;</a></li>
-					<li><input type="text" name="option" /> <a class="delete-option" href="javascript:;">&times;</a></li>
-					<li><input type="text" name="option" /> <a class="delete-option" href="javascript:;">&times;</a></li>
+					<li><input type="text" name="option" /> <a class="delete-option" href="javascript:;"><span class="screen-reader-text"><?php esc_html_e( 'Delete Option', 'jetpack' ); ?></span></a></li>
+					<li><input type="text" name="option" /> <a class="delete-option" href="javascript:;"><span class="screen-reader-text"><?php esc_html_e( 'Delete Option', 'jetpack' ); ?></span></a></li>
+					<li><input type="text" name="option" /> <a class="delete-option" href="javascript:;"><span class="screen-reader-text"><?php esc_html_e( 'Delete Option', 'jetpack' ); ?></span></a></li>
 				<# } #>
 				<li><a class="add-option" href="javascript:;"><?php esc_html_e( 'Add new option...', 'jetpack' ); ?></a></li>
 			</ol>
@@ -223,7 +223,7 @@ class Grunion_Editor_View {
 </script>
 
 <script type="text/html" id="tmpl-grunion-field-edit-option">
-	<li><input type="text" name="option" /> <a class="delete-option" href="javascript:;">&times;</a></li>
+	<li><input type="text" name="option" /> <a class="delete-option" href="javascript:;"><span class="screen-reader-text"><?php esc_html_e( 'Delete Option', 'jetpack' ); ?></span></a></li>
 </script>
 
 <script type="text/html" id="tmpl-grunion-editor-inline">
