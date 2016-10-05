@@ -227,8 +227,6 @@ class Grunion_Editor_View {
 </script>
 
 <script type="text/html" id="tmpl-grunion-editor-inline">
-	<div id="grunion-inline-wrap">
-		<div class="grunion-modal wp-core-ui">
 			<h1 class="grunion-section-header"><?php esc_html_e( 'Form Settings', 'jetpack' ); ?></h1>
 			<div class="card grunion-form-settings">
 				<label><?php esc_html_e( 'What would you like the subject of the email to be?', 'jetpack' ); ?>
@@ -247,9 +245,6 @@ class Grunion_Editor_View {
 				<?php submit_button( esc_html__( 'Update Form', 'jetpack' ), 'primary', 'submit', false ); ?>
 				<?php submit_button( esc_html__( 'Cancel', 'jetpack' ), 'delete', 'cancel', false ); ?>
 			</div>
-		</div>
-		<div class="grunion-modal-backdrop"></div>
-	</div>
 </script>
 	<?php
 	}
