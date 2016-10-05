@@ -168,8 +168,6 @@ class Grunion_Editor_View {
 
 <script type="text/html" id="tmpl-grunion-field-edit">
 	<div class="card is-compact grunion-field-edit grunion-field-{{ data.type }}">
-		<a href="javascript:;" class="delete-field"><span class="screen-reader-text"><?php esc_html_e( 'Delete Field', 'jetpack' ); ?></span></a>
-
 		<label class="grunion-name">
 			<span>Field name</span>
 			<input type="text" name="label" placeholder="<?php esc_attr_e( 'Label', 'jetpack' ); ?>" value="{{ data.label }}"/>
@@ -219,6 +217,8 @@ class Grunion_Editor_View {
 				<li><a class="add-option" href="javascript:;"><?php esc_html_e( 'Add new option...', 'jetpack' ); ?></a></li>
 			</ol>
 		</label>
+
+		<a href="javascript:;" class="delete-field"><span class="screen-reader-text"><?php esc_html_e( 'Delete Field', 'jetpack' ); ?></span></a>
 	</div>
 </script>
 
