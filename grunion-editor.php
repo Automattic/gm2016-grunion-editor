@@ -169,7 +169,7 @@ class Grunion_Editor_View {
 <script type="text/html" id="tmpl-grunion-field-edit">
 	<div class="card is-compact grunion-field-edit grunion-field-{{ data.type }}" aria-label="<?php esc_attr_e( 'Form Field', 'jetpack' ); ?>">
 		<label class="grunion-name">
-			<span>Field name</span>
+			<span><?php esc_html_e( 'Field Label', 'jetpack' ); ?></span>
 			<input type="text" name="label" placeholder="<?php esc_attr_e( 'Label', 'jetpack' ); ?>" value="{{ data.label }}"/>
 		</label>
 
