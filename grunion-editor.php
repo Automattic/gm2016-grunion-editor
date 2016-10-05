@@ -192,8 +192,8 @@ class Grunion_Editor_View {
 				<?php foreach ( $grunion_field_types as $type => $label ) : ?>
 				<option <# if ( '<?php echo esc_js( $type ); ?>' === data.type ) print( "selected='selected'" ) #> value="<?php echo esc_attr( $type ); ?>">
 					<?php echo esc_html( $label ); ?>
-					</option>
-					<?php endforeach; ?>
+				</option>
+				<?php endforeach; ?>
 			</select>
 		</label>
 
