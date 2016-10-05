@@ -160,11 +160,12 @@
 				update_callback( wp.shortcode.string( shortcode ) );
 			});
 			$buttons.find('input[name=add-field]').on( 'click', function(){
-				$editfields.append( wp.mce.grunion_wp_view_renderer.edit_template({}) );
+				var $new_field = $( wp.mce.grunion_wp_view_renderer.edit_template({}) );
+				$editfields.append( $new_field );
 				$editfields.sortable('refresh');
 				$editframe.trigger('checkheight');
+				$new_field.find('input:first').focus();
 			});
-
 
 			$editfields.on( 'click', '.delete-option', function(e){
 				e.preventDefault();
@@ -173,9 +174,11 @@
 			});
 
 			$editfields.on( 'click', '.add-option', function(e){
+				var $new_option = $( wp.mce.grunion_wp_view_renderer.editor_option() );
 				e.preventDefault();
-				$(this).closest('li').before( wp.mce.grunion_wp_view_renderer.editor_option() );
+				$(this).closest('li').before( $new_option );
 				$editframe.trigger('checkheight');
+				$new_option.find('input:first').focus();
 			});
 
 			$editfields.on( 'click', '.delete-field', function(e){
