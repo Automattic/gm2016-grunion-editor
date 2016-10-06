@@ -99,7 +99,6 @@
 			}) );
 
 			$editframe.on('checkheight', function(){
-				console.log( 'Checking height: ' + this.contentWindow.document.body.scrollHeight );
 				this.style.height = '10px';
 				this.style.height = ( 5 + this.contentWindow.document.body.scrollHeight ) + 'px';
 				tinyMCE.activeEditor.execCommand('wpAutoResize');
