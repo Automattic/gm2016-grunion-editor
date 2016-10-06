@@ -114,6 +114,8 @@
 			});
 
 			var $buttons = $editframe.contents().find('.buttons');
+
+			// The 'save' listener.
 			$buttons.find('input[name=submit]').on( 'click', function(){
 				var new_data = shortcode;
 
@@ -157,9 +159,11 @@
 
 				update_callback( wp.shortcode.string( new_data ) );
 			});
+
 			$buttons.find('input[name=cancel]').on( 'click', function(){
 				update_callback( wp.shortcode.string( shortcode ) );
 			});
+
 			$buttons.find('input[name=add-field]').on( 'click', function(){
 				var $new_field = $( wp.mce.grunion_wp_view_renderer.edit_template({}) );
 				$editfields.append( $new_field );
