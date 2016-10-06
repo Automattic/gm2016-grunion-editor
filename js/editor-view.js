@@ -102,7 +102,9 @@
 				this.style.height = '10px';
 				this.style.height = ( 5 + this.contentWindow.document.body.scrollHeight ) + 'px';
 				tinyMCE.activeEditor.execCommand('wpAutoResize');
-			}).trigger('checkheight').hide().fadeIn(250);
+			}).trigger('checkheight').hide().fadeIn(250, function(){
+				$(this).contents().find('input:first').focus();
+			});
 
 			$editfields = $editframe.contents().find('.grunion-fields');
 			$editfields.sortable();
